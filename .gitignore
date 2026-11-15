@@ -1,0 +1,36 @@
+# Large database backups and volumes
+postgres_air_2024.backup
+postgres_air/
+*.backup
+*.dump
+*.tar.gz
+
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.mypy_cache/
+.pytest_cache/
+.venv/
+env/
+venv/
+
+# OS and Editor artifacts
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Build artifacts & logs
+*.log
+dist/
+build/
+*.dyn_o
+*.dyn_hi
+*.o
+*.hi

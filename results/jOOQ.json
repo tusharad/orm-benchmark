@@ -1,0 +1,244 @@
+{
+  "orm" : "jOOQ",
+  "language" : "Java",
+  "version" : "Java 21 / jOOQ 3.19.16",
+  "timestamp" : "2026-11-15T14:41:44.402184288Z",
+  "path" : "../jOOQ/bench",
+  "canonical_queries" : {
+    "HQ01" : {
+      "status" : "✅",
+      "loc" : 6,
+      "notes" : "10k flight entities hydrated",
+      "p50_ms" : 18.51,
+      "p95_ms" : 40.49,
+      "p99_ms" : 40.49,
+      "rows_per_sec" : 454965.63
+    },
+    "HQ02" : {
+      "status" : "✅",
+      "loc" : 12,
+      "notes" : "5k 4-table joined records",
+      "p50_ms" : 10.91,
+      "p95_ms" : 13.25,
+      "p99_ms" : 13.25,
+      "rows_per_sec" : 448469.42
+    },
+    "HQ03" : {
+      "status" : "✅",
+      "loc" : 20,
+      "notes" : "4-level deep graph assembly (0 N+1)",
+      "p50_ms" : 3.09,
+      "p95_ms" : 4.93,
+      "p99_ms" : 4.93
+    },
+    "HQ04" : {
+      "status" : "✅",
+      "loc" : 20,
+      "notes" : "Account graph with 7,000 joined records",
+      "p50_ms" : 1.47,
+      "p95_ms" : 2.3,
+      "p99_ms" : 2.69
+    },
+    "HQ05" : {
+      "status" : "✅",
+      "loc" : 30,
+      "notes" : "5-table analytical ledger over 410k rows",
+      "p50_ms" : 384.35,
+      "p95_ms" : 392.77,
+      "p99_ms" : 392.77
+    },
+    "HQ06" : {
+      "status" : "✅",
+      "loc" : 50,
+      "notes" : "3 chained CTEs hub centrality over 112k flights",
+      "p50_ms" : 109.82,
+      "p95_ms" : 114.0,
+      "p99_ms" : 114.0
+    },
+    "HQ07" : {
+      "status" : "✅",
+      "loc" : 30,
+      "notes" : "Correlated subqueries in SELECT & WHERE",
+      "p50_ms" : 0.53,
+      "p95_ms" : 0.98,
+      "p99_ms" : 1.13
+    },
+    "HQ08" : {
+      "status" : "✅",
+      "loc" : 38,
+      "notes" : "Recursive 1- to 3-hop itinerary graph traversal",
+      "p50_ms" : 305.69,
+      "p95_ms" : 307.74,
+      "p99_ms" : 307.74
+    },
+    "HQ09" : {
+      "status" : "✅",
+      "loc" : 32,
+      "notes" : "4 simultaneous window functions with framing",
+      "p50_ms" : 7.74,
+      "p95_ms" : 10.77,
+      "p99_ms" : 10.77
+    },
+    "HQ10" : {
+      "status" : "✅",
+      "loc" : 8,
+      "notes" : "Composite keyset cursor pagination",
+      "p50_ms" : 0.62,
+      "p95_ms" : 1.03,
+      "p99_ms" : 2.5
+    },
+    "HQ11" : {
+      "status" : "✅",
+      "loc" : 40,
+      "notes" : "Dynamic faceted search with 10 predicates",
+      "p50_ms" : 0.62,
+      "p95_ms" : 0.8,
+      "p99_ms" : 0.88
+    },
+    "HQ12" : {
+      "status" : "✅",
+      "loc" : 25,
+      "notes" : "High-volume 2,500 rows batch upsert",
+      "p50_ms" : 14.67,
+      "p95_ms" : 27.03,
+      "p99_ms" : 27.03
+    },
+    "HQ13" : {
+      "status" : "✅",
+      "loc" : 10,
+      "notes" : "Optimistic version increment",
+      "p50_ms" : 0.13,
+      "p95_ms" : 0.16,
+      "p99_ms" : 0.2
+    },
+    "HQ14" : {
+      "status" : "✅",
+      "loc" : 22,
+      "notes" : "Concurrent seat reservation with FOR UPDATE",
+      "p50_ms" : 0.17,
+      "p95_ms" : 0.27,
+      "p99_ms" : 0.47
+    },
+    "HQ15" : {
+      "status" : "✅",
+      "loc" : 28,
+      "notes" : "Serializable points transfer with 40001 retry",
+      "p50_ms" : 0.41,
+      "p95_ms" : 0.64,
+      "p99_ms" : 0.67
+    },
+    "HQ16" : {
+      "status" : "✅",
+      "loc" : 40,
+      "notes" : "Hybrid 384-dim HNSW + BM25 RRF search",
+      "p50_ms" : 5.99,
+      "p95_ms" : 6.26,
+      "p99_ms" : 6.26
+    }
+  },
+  "hydration_benchmarks" : {
+    "hq01_10k_entity_deserialization" : {
+      "p50_ms" : 18.51,
+      "p95_ms" : 40.49,
+      "p99_ms" : 40.49,
+      "rows_per_sec" : 454965.63
+    },
+    "hq02_5k_wide_composite_join" : {
+      "p50_ms" : 10.91,
+      "p95_ms" : 13.25,
+      "p99_ms" : 13.25,
+      "rows_per_sec" : 448469.42
+    }
+  },
+  "concurrency_benchmarks" : {
+    "ladder_c1" : {
+      "p99_ms" : 0.85,
+      "rps" : 2450.62,
+      "concurrency" : 1
+    },
+    "ladder_c10" : {
+      "p99_ms" : 16.57,
+      "rps" : 2654.2,
+      "concurrency" : 10
+    },
+    "ladder_c50" : {
+      "p99_ms" : 27.79,
+      "rps" : 9262.94,
+      "concurrency" : 50
+    },
+    "ladder_c100" : {
+      "p99_ms" : 39.18,
+      "rps" : 9738.75,
+      "concurrency" : 100
+    }
+  },
+  "deliberate_mistakes" : {
+    "E01" : {
+      "line_count" : 12,
+      "zero_leakage" : true
+    },
+    "E02" : {
+      "line_count" : 12,
+      "zero_leakage" : true
+    },
+    "E03" : {
+      "line_count" : 6,
+      "zero_leakage" : true
+    },
+    "E04" : {
+      "line_count" : 5,
+      "zero_leakage" : true
+    },
+    "E05" : {
+      "line_count" : 4,
+      "zero_leakage" : true
+    },
+    "E06" : {
+      "line_count" : 6,
+      "zero_leakage" : true
+    },
+    "E07" : {
+      "line_count" : 20,
+      "zero_leakage" : true
+    },
+    "E08" : {
+      "line_count" : 4,
+      "zero_leakage" : true
+    },
+    "E09" : {
+      "line_count" : 4,
+      "zero_leakage" : true
+    },
+    "E10" : {
+      "line_count" : 6,
+      "zero_leakage" : true
+    }
+  },
+  "performance" : {
+    "total_allocated_mb" : 256.0,
+    "max_heap_mb" : 149.0,
+    "gc_minor_collections" : 11,
+    "gc_major_collections" : 2,
+    "gc_pause_total_ms" : 30.0,
+    "peak_rps" : 9738.75
+  },
+  "ergonomics" : {
+    "loc" : 410,
+    "tokens" : 2200,
+    "unique_operators" : 8,
+    "operator_score" : 9.5,
+    "blast_radius_lines" : 1,
+    "blast_radius_files" : 1
+  },
+  "summary" : {
+    "overall_score" : 89.4,
+    "passed_queries" : 16,
+    "total_queries" : 16,
+    "avg_p95_ms" : 57.71,
+    "hydration_rows_sec" : 454965.63,
+    "peak_rps" : 9738.75,
+    "max_heap_mb" : 149.0,
+    "blast_radius_lines" : 1,
+    "mistake_score" : 10
+  }
+}

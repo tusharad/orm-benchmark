@@ -1,0 +1,249 @@
+{
+  "orm": "mikro-orm",
+  "language": "TypeScript",
+  "version": "Node.js 26 / MikroORM 7.2.9",
+  "timestamp": "2026-11-15T15:24:38.667Z",
+  "path": "../mikro-orm/bench",
+  "summary": {
+    "overall_score": 88.7,
+    "passed_queries": 16,
+    "total_queries": 16,
+    "avg_p95_ms": 58.19,
+    "peak_rps": 3301.85,
+    "hydration_rows_sec": 182594,
+    "max_heap_mb": 239.52,
+    "blast_radius_lines": 1,
+    "mistake_score": 10
+  },
+  "canonical_queries": {
+    "HQ01": {
+      "status": "✅",
+      "p50_ms": 54.76645800000006,
+      "p95_ms": 68.780666,
+      "p99_ms": 68.780666,
+      "loc": 6,
+      "rows_per_sec": 182593.51371600459,
+      "notes": "10k flight entities hydrated"
+    },
+    "HQ02": {
+      "status": "✅",
+      "p50_ms": 7.29058299999997,
+      "p95_ms": 9.110209000000054,
+      "p99_ms": 9.110209000000054,
+      "loc": 14,
+      "rows_per_sec": 685816.2097599083,
+      "notes": "5k 4-table joined records"
+    },
+    "HQ03": {
+      "status": "✅",
+      "p50_ms": 3.0320420000000468,
+      "p95_ms": 4.376541999999972,
+      "p99_ms": 4.376541999999972,
+      "loc": 24,
+      "notes": "4-level deep graph assembly (0 N+1)"
+    },
+    "HQ04": {
+      "status": "✅",
+      "p50_ms": 1.3208750000001146,
+      "p95_ms": 2.6901249999998527,
+      "p99_ms": 2.6901249999998527,
+      "loc": 28,
+      "notes": "Account graph with 7,000 joined records"
+    },
+    "HQ05": {
+      "status": "✅",
+      "p50_ms": 364.72241699999995,
+      "p95_ms": 394.07204200000024,
+      "p99_ms": 394.07204200000024,
+      "loc": 24,
+      "notes": "5-table analytical ledger over 410k rows"
+    },
+    "HQ06": {
+      "status": "✅",
+      "p50_ms": 86.85333300000002,
+      "p95_ms": 87.49558400000024,
+      "p99_ms": 87.49558400000024,
+      "loc": 26,
+      "notes": "3 chained CTEs hub centrality over 112k flights"
+    },
+    "HQ07": {
+      "status": "✅",
+      "p50_ms": 0.44979200000034325,
+      "p95_ms": 0.5521669999998267,
+      "p99_ms": 0.5521669999998267,
+      "loc": 22,
+      "notes": "Correlated subqueries in SELECT & WHERE"
+    },
+    "HQ08": {
+      "status": "✅",
+      "p50_ms": 300.9706669999996,
+      "p95_ms": 307.23825000000033,
+      "p99_ms": 307.23825000000033,
+      "loc": 25,
+      "notes": "Recursive 1- to 3-hop itinerary graph traversal"
+    },
+    "HQ09": {
+      "status": "✅",
+      "p50_ms": 6.994125000000167,
+      "p95_ms": 8.950209000000541,
+      "p99_ms": 8.950209000000541,
+      "loc": 20,
+      "notes": "4 simultaneous window functions with framing"
+    },
+    "HQ10": {
+      "status": "✅",
+      "p50_ms": 0.6060830000005808,
+      "p95_ms": 0.76299999999992,
+      "p99_ms": 0.76299999999992,
+      "loc": 10,
+      "notes": "Composite keyset cursor pagination"
+    },
+    "HQ11": {
+      "status": "✅",
+      "p50_ms": 0.7901660000006814,
+      "p95_ms": 1.1231659999994008,
+      "p99_ms": 1.1231659999994008,
+      "loc": 28,
+      "notes": "Dynamic faceted search with 10 predicates"
+    },
+    "HQ12": {
+      "status": "✅",
+      "p50_ms": 12.594874999999774,
+      "p95_ms": 13.009458999999879,
+      "p99_ms": 13.009458999999879,
+      "loc": 14,
+      "notes": "MikroORM 2,500 rows batch upsert"
+    },
+    "HQ13": {
+      "status": "✅",
+      "p50_ms": 0.19691700000021228,
+      "p95_ms": 0.2516249999998763,
+      "p99_ms": 0.2516249999998763,
+      "loc": 8,
+      "notes": "Optimistic version increment"
+    },
+    "HQ14": {
+      "status": "✅",
+      "p50_ms": 12.261083000000326,
+      "p95_ms": 13.447249999999258,
+      "p99_ms": 13.447249999999258,
+      "loc": 18,
+      "rows_per_sec": 3118.32,
+      "notes": "Concurrent seat reservation with FOR UPDATE"
+    },
+    "HQ15": {
+      "status": "✅",
+      "p50_ms": 12.932708000000275,
+      "p95_ms": 13.079874999999447,
+      "p99_ms": 13.079874999999447,
+      "loc": 20,
+      "notes": "Serializable points transfer with 40001 retry"
+    },
+    "HQ16": {
+      "status": "✅",
+      "p50_ms": 5.786040999999386,
+      "p95_ms": 6.167499999999563,
+      "p99_ms": 6.167499999999563,
+      "loc": 20,
+      "notes": "Hybrid 384-dim HNSW + BM25 RRF search"
+    }
+  },
+  "hydration_benchmarks": {
+    "HQ01": {
+      "total_rows": 10000,
+      "duration_ms": 54.76645800000006,
+      "p50_ms": 54.76645800000006,
+      "p95_ms": 68.780666,
+      "p99_ms": 68.780666,
+      "rows_per_sec": 182593.51371600459
+    },
+    "HQ02": {
+      "total_rows": 5000,
+      "duration_ms": 7.29058299999997,
+      "p50_ms": 7.29058299999997,
+      "p95_ms": 9.110209000000054,
+      "p99_ms": 9.110209000000054,
+      "rows_per_sec": 685816.2097599083
+    }
+  },
+  "concurrency_benchmarks": {
+    "C1": {
+      "concurrency": 1,
+      "rps": 1774.92,
+      "p99_ms": 0.93
+    },
+    "C10": {
+      "concurrency": 10,
+      "rps": 2871.39,
+      "p99_ms": 17.91
+    },
+    "C50": {
+      "concurrency": 50,
+      "rps": 3301.85,
+      "p99_ms": 21.19
+    },
+    "C100": {
+      "concurrency": 100,
+      "rps": 3118.32,
+      "p99_ms": 38.43
+    }
+  },
+  "ergonomics": {
+    "loc": 310,
+    "tokens": 1850,
+    "unique_operators": 8,
+    "operator_score": 8.5,
+    "blast_radius_lines": 1,
+    "blast_radius_files": 1
+  },
+  "deliberate_mistakes": {
+    "E01": {
+      "line_count": 5,
+      "zero_leakage": true
+    },
+    "E02": {
+      "line_count": 5,
+      "zero_leakage": true
+    },
+    "E03": {
+      "line_count": 6,
+      "zero_leakage": true
+    },
+    "E04": {
+      "line_count": 4,
+      "zero_leakage": true
+    },
+    "E05": {
+      "line_count": 5,
+      "zero_leakage": true
+    },
+    "E06": {
+      "line_count": 3,
+      "zero_leakage": true
+    },
+    "E07": {
+      "line_count": 4,
+      "zero_leakage": true
+    },
+    "E08": {
+      "line_count": 5,
+      "zero_leakage": true
+    },
+    "E09": {
+      "line_count": 4,
+      "zero_leakage": true
+    },
+    "E10": {
+      "line_count": 4,
+      "zero_leakage": true
+    }
+  },
+  "performance": {
+    "peak_rps": 3301.9,
+    "total_allocated_mb": 512,
+    "max_heap_mb": 239.52,
+    "gc_minor_collections": 0,
+    "gc_major_collections": 0,
+    "gc_pause_total_ms": 0
+  }
+}

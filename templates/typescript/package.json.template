@@ -1,0 +1,19 @@
+{
+  "name": "postgres-air-typescript-bench",
+  "version": "1.0.0",
+  "description": "Postgres Air Benchmark Harness for TypeScript ORMs",
+  "main": "dist/bench.js",
+  "scripts": {
+    "build": "tsc",
+    "bench": "node dist/bench.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "pg": "^8.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.11.0",
+    "typescript": "^5.6.0"
+  }
+}

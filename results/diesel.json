@@ -1,0 +1,246 @@
+{
+  "canonical_queries": {
+    "HQ01": {
+      "loc": 8,
+      "notes": "10k flight entities hydrated",
+      "p50_ms": 7.281707999999999,
+      "p95_ms": 7.641291,
+      "p99_ms": 7.641291,
+      "rows_per_sec": 1373304.1753390827,
+      "status": "✅"
+    },
+    "HQ02": {
+      "loc": 14,
+      "notes": "5k 4-table joined records",
+      "p50_ms": 8.066500000000001,
+      "p95_ms": 8.239457999999999,
+      "p99_ms": 8.239457999999999,
+      "rows_per_sec": 619847.5175106924,
+      "status": "✅"
+    },
+    "HQ03": {
+      "loc": 22,
+      "notes": "4-level deep graph assembly (0 N+1)",
+      "p50_ms": 3.284458,
+      "p95_ms": 3.3236250000000003,
+      "p99_ms": 3.3236250000000003,
+      "rows_per_sec": 672257.0360162925,
+      "status": "✅"
+    },
+    "HQ04": {
+      "loc": 26,
+      "notes": "Account graph with 7,000 joined records",
+      "p50_ms": 12.6045,
+      "p95_ms": 12.828792,
+      "p99_ms": 12.828792,
+      "status": "✅"
+    },
+    "HQ05": {
+      "loc": 22,
+      "notes": "5-table analytical ledger over 410k rows",
+      "p50_ms": 350.350583,
+      "p95_ms": 356.368833,
+      "p99_ms": 356.368833,
+      "status": "✅"
+    },
+    "HQ06": {
+      "loc": 25,
+      "notes": "3 chained CTEs hub centrality over 112k flights",
+      "p50_ms": 83.972917,
+      "p95_ms": 84.417084,
+      "p99_ms": 84.417084,
+      "status": "✅"
+    },
+    "HQ07": {
+      "loc": 20,
+      "notes": "Correlated subqueries in SELECT & WHERE",
+      "p50_ms": 99.325333,
+      "p95_ms": 118.51075,
+      "p99_ms": 118.51075,
+      "status": "✅"
+    },
+    "HQ08": {
+      "loc": 24,
+      "notes": "Recursive 1- to 3-hop itinerary graph traversal",
+      "p50_ms": 299.979917,
+      "p95_ms": 308.308417,
+      "p99_ms": 308.308417,
+      "status": "✅"
+    },
+    "HQ09": {
+      "loc": 20,
+      "notes": "4 simultaneous window functions with framing",
+      "p50_ms": 6.199917,
+      "p95_ms": 6.430458,
+      "p99_ms": 6.430458,
+      "status": "✅"
+    },
+    "HQ10": {
+      "loc": 10,
+      "notes": "Composite keyset cursor pagination",
+      "p50_ms": 11.278666999999999,
+      "p95_ms": 12.086958,
+      "p99_ms": 12.086958,
+      "status": "✅"
+    },
+    "HQ11": {
+      "loc": 28,
+      "notes": "Dynamic faceted search with 10 predicates",
+      "p50_ms": 7.8139579999999995,
+      "p95_ms": 8.075208,
+      "p99_ms": 8.207625,
+      "status": "✅"
+    },
+    "HQ12": {
+      "loc": 12,
+      "notes": "Diesel on_conflict 2,500 rows batch upsert",
+      "p50_ms": 11.918875,
+      "p95_ms": 13.02875,
+      "p99_ms": 13.02875,
+      "status": "✅"
+    },
+    "HQ13": {
+      "loc": 8,
+      "notes": "Optimistic version increment",
+      "p50_ms": 1.3932499999999999,
+      "p95_ms": 1.723708,
+      "p99_ms": 1.723708,
+      "status": "✅"
+    },
+    "HQ14": {
+      "loc": 16,
+      "notes": "Concurrent seat reservation with FOR UPDATE",
+      "p50_ms": 0.680417,
+      "p95_ms": 0.728,
+      "p99_ms": 0.85825,
+      "rows_per_sec": 256.0990591160661,
+      "status": "✅"
+    },
+    "HQ15": {
+      "loc": 18,
+      "notes": "Serializable points transfer with 40001 retry",
+      "p50_ms": 0.6744159999999999,
+      "p95_ms": 0.739958,
+      "p99_ms": 0.739958,
+      "status": "✅"
+    },
+    "HQ16": {
+      "loc": 18,
+      "notes": "Hybrid 384-dim HNSW + BM25 RRF search",
+      "p50_ms": 3.037583,
+      "p95_ms": 3.166,
+      "p99_ms": 3.166,
+      "status": "✅"
+    }
+  },
+  "concurrency_benchmarks": {
+    "C1": {
+      "concurrency": 1,
+      "p99_ms": 28.017207999999997,
+      "rps": 86.86722472482498
+    },
+    "C10": {
+      "concurrency": 10,
+      "p99_ms": 66.001417,
+      "rps": 266.3504497306036
+    },
+    "C100": {
+      "concurrency": 100,
+      "p99_ms": 127.072458,
+      "rps": 256.0990591160661
+    },
+    "C50": {
+      "concurrency": 50,
+      "p99_ms": 109.99974999999999,
+      "rps": 259.143379170165
+    }
+  },
+  "deliberate_mistakes": {
+    "E01": {
+      "line_count": 63,
+      "zero_leakage": true
+    },
+    "E02": {
+      "line_count": 23,
+      "zero_leakage": true
+    },
+    "E03": {
+      "line_count": 25,
+      "zero_leakage": true
+    },
+    "E04": {
+      "line_count": 19,
+      "zero_leakage": true
+    },
+    "E05": {
+      "line_count": 2,
+      "zero_leakage": true
+    },
+    "E06": {
+      "line_count": 20,
+      "zero_leakage": true
+    },
+    "E07": {
+      "line_count": 2,
+      "zero_leakage": true
+    },
+    "E08": {
+      "line_count": 28,
+      "zero_leakage": true
+    },
+    "E09": {
+      "line_count": 2,
+      "zero_leakage": true
+    },
+    "E10": {
+      "line_count": 14,
+      "zero_leakage": true
+    }
+  },
+  "ergonomics": {
+    "blast_radius_files": 1,
+    "blast_radius_lines": 3,
+    "loc": 281,
+    "operator_score": 8.5,
+    "tokens": 1690,
+    "unique_operators": 6
+  },
+  "hydration_benchmarks": {
+    "HQ01": {
+      "duration_ms": 7.2050902500000005,
+      "rows_per_sec": 1373304.1753390827,
+      "total_fields": 120000,
+      "total_rows": 10000
+    },
+    "HQ02": {
+      "duration_ms": 8.05909375,
+      "rows_per_sec": 619847.5175106924,
+      "total_fields": 85000,
+      "total_rows": 5000
+    }
+  },
+  "language": "Rust",
+  "orm": "diesel",
+  "path": "../diesel/diesel-postgres-air-bench",
+  "performance": {
+    "gc_major_collections": 0,
+    "gc_minor_collections": 0,
+    "gc_pause_total_ms": 0.0,
+    "max_heap_mb": 33.328125,
+    "peak_rps": 266.3504497306036,
+    "total_allocated_mb": 420.0
+  },
+  "summary": {
+    "avg_p95_ms": 59.1,
+    "blast_radius_lines": 3,
+    "hydration_rows_sec": 1373304.0,
+    "max_heap_mb": 33.328125,
+    "mistake_score": 10,
+    "overall_score": 88.0,
+    "passed_queries": 16,
+    "peak_rps": 266.3504497306036,
+    "total_queries": 16
+  },
+  "timestamp": "2026-11-14T19:46:05.016950+00:00",
+  "version": "2.4.0"
+}

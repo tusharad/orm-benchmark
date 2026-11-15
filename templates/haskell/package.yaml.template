@@ -1,0 +1,34 @@
+name:                postgres-air-haskell-bench
+version:             0.1.0.0
+synopsis:            Postgres Air Benchmark Harness for Haskell ORMs
+license:             BSD3
+dependencies:
+- base >= 4.14 && < 5
+- text
+- bytestring
+- time
+- aeson
+- postgresql-simple
+- vector
+- resource-pool
+
+library:
+  source-dirs: src
+  exposed-modules:
+  - Model
+  - Queries
+
+executables:
+  bench-runner:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - "-with-rtsopts=-N -T"
+    - -O2
+    dependencies:
+    - postgres-air-haskell-bench
+    - criterion
+    - weigh
+    - async

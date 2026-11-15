@@ -1,0 +1,245 @@
+{
+  "orm": "sqlalchemy",
+  "language": "Python",
+  "version": "Python 3.14.6 / SQLAlchemy 2.1.9",
+  "path": "../sqlalchemy/sqlalchemy-postgres-air-bench",
+  "timestamp": "2026-11-15T16:52:49.594398+00:00",
+  "summary": {
+    "overall_score": 87.4,
+    "passed_queries": 16,
+    "total_queries": 16,
+    "avg_p95_ms": 72.57,
+    "peak_rps": 5718.291867773058,
+    "hydration_rows_sec": 279239.0,
+    "max_heap_mb": 92.5,
+    "blast_radius_lines": 1,
+    "mistake_score": 10
+  },
+  "canonical_queries": {
+    "HQ01": {
+      "status": "\u2705",
+      "p50_ms": 31.98158299892384,
+      "p95_ms": 42.18379200028721,
+      "p99_ms": 42.18379200028721,
+      "loc": 4,
+      "rows_per_sec": 279239,
+      "notes": "10k flight entities hydrated"
+    },
+    "HQ02": {
+      "status": "\u2705",
+      "p50_ms": 11.34108299993386,
+      "p95_ms": 11.82429099935689,
+      "p99_ms": 11.82429099935689,
+      "loc": 25,
+      "rows_per_sec": 438708,
+      "notes": "5k 4-table joined records"
+    },
+    "HQ03": {
+      "status": "\u2705",
+      "p50_ms": 15.11995799955912,
+      "p95_ms": 23.5686669984716,
+      "p99_ms": 23.5686669984716,
+      "loc": 10,
+      "notes": "4-level deep graph assembly with selectinload (0 N+1)"
+    },
+    "HQ04": {
+      "status": "\u2705",
+      "p50_ms": 27.8352499990433,
+      "p95_ms": 37.91724999973667,
+      "p99_ms": 37.91724999973667,
+      "loc": 10,
+      "notes": "Account graph with nested selectinload"
+    },
+    "HQ05": {
+      "status": "\u2705",
+      "p50_ms": 371.49245900036476,
+      "p95_ms": 392.9215829994064,
+      "p99_ms": 392.9215829994064,
+      "loc": 32,
+      "notes": "5-table analytical ledger over 410k rows"
+    },
+    "HQ06": {
+      "status": "\u2705",
+      "p50_ms": 88.2166249994043,
+      "p95_ms": 88.83512500142388,
+      "p99_ms": 88.83512500142388,
+      "loc": 55,
+      "notes": "3 chained CTEs hub centrality over 112k flights"
+    },
+    "HQ07": {
+      "status": "\u2705",
+      "p50_ms": 103.76204199928907,
+      "p95_ms": 135.75037499867904,
+      "p99_ms": 135.75037499867904,
+      "loc": 35,
+      "notes": "Correlated subqueries in SELECT & WHERE"
+    },
+    "HQ08": {
+      "status": "\u2705",
+      "p50_ms": 305.1271670010465,
+      "p95_ms": 306.39783299920964,
+      "p99_ms": 306.39783299920964,
+      "loc": 38,
+      "notes": "Recursive 1- to 3-hop itinerary graph traversal"
+    },
+    "HQ09": {
+      "status": "\u2705",
+      "p50_ms": 7.721375000983244,
+      "p95_ms": 8.009375000256114,
+      "p99_ms": 8.009375000256114,
+      "loc": 36,
+      "notes": "4 simultaneous window functions with framing"
+    },
+    "HQ10": {
+      "status": "\u2705",
+      "p50_ms": 0.4301669996493729,
+      "p95_ms": 0.4377080003905576,
+      "p99_ms": 0.4377080003905576,
+      "loc": 14,
+      "notes": "Composite keyset cursor pagination"
+    },
+    "HQ11": {
+      "status": "\u2705",
+      "p50_ms": 0.6724579998262925,
+      "p95_ms": 0.7477500003005844,
+      "p99_ms": 0.7477500003005844,
+      "loc": 35,
+      "notes": "Dynamic faceted search with 10 predicates"
+    },
+    "HQ12": {
+      "status": "\u2705",
+      "p50_ms": 102.53083300085564,
+      "p95_ms": 105.1728339989495,
+      "p99_ms": 105.1728339989495,
+      "loc": 14,
+      "notes": "SQLAlchemy on_conflict_do_update 2,500 rows batch upsert"
+    },
+    "HQ13": {
+      "status": "\u2705",
+      "p50_ms": 0.9241670013580006,
+      "p95_ms": 0.974042000962072,
+      "p99_ms": 0.974042000962072,
+      "loc": 14,
+      "notes": "Optimistic version increment"
+    },
+    "HQ14": {
+      "status": "\u2705",
+      "p50_ms": 0.766334000218194,
+      "p95_ms": 0.8086670004558982,
+      "p99_ms": 0.8086670004558982,
+      "loc": 18,
+      "rows_per_sec": 5718.291867773058,
+      "notes": "Concurrent seat reservation with FOR UPDATE"
+    },
+    "HQ15": {
+      "status": "\u2705",
+      "p50_ms": 1.4916669988451758,
+      "p95_ms": 1.5858330007176846,
+      "p99_ms": 1.5858330007176846,
+      "loc": 25,
+      "notes": "Serializable points transfer with 40001 retry"
+    },
+    "HQ16": {
+      "status": "\u2705",
+      "p50_ms": 3.5901249993912643,
+      "p95_ms": 3.934917000151472,
+      "p99_ms": 3.934917000151472,
+      "loc": 45,
+      "notes": "Hybrid 384-dim HNSW + BM25 RRF search"
+    }
+  },
+  "hydration_benchmarks": {
+    "HQ01": {
+      "total_rows": 10000,
+      "total_fields": 120000,
+      "duration_ms": 35.81166680014576,
+      "rows_per_sec": 279239.0
+    },
+    "HQ02": {
+      "total_rows": 5000,
+      "total_fields": 85000,
+      "duration_ms": 11.397091400067438,
+      "rows_per_sec": 438708.0
+    }
+  },
+  "concurrency_benchmarks": {
+    "C1": {
+      "concurrency": 1,
+      "rps": 2594.5413237567964,
+      "p99_ms": 0.9414170017407741
+    },
+    "C10": {
+      "concurrency": 10,
+      "rps": 4580.5023632907005,
+      "p99_ms": 14.301625000371132
+    },
+    "C50": {
+      "concurrency": 50,
+      "rps": 4956.789927316855,
+      "p99_ms": 41.925375000573695
+    },
+    "C100": {
+      "concurrency": 100,
+      "rps": 5718.291867773058,
+      "p99_ms": 55.19025000103284
+    }
+  },
+  "ergonomics": {
+    "loc": 375,
+    "tokens": 2100,
+    "unique_operators": 6,
+    "operator_score": 9.0,
+    "blast_radius_lines": 1,
+    "blast_radius_files": 1
+  },
+  "deliberate_mistakes": {
+    "E01": {
+      "line_count": 4,
+      "zero_leakage": true
+    },
+    "E02": {
+      "line_count": 4,
+      "zero_leakage": true
+    },
+    "E03": {
+      "line_count": 5,
+      "zero_leakage": true
+    },
+    "E04": {
+      "line_count": 4,
+      "zero_leakage": true
+    },
+    "E05": {
+      "line_count": 4,
+      "zero_leakage": true
+    },
+    "E06": {
+      "line_count": 5,
+      "zero_leakage": true
+    },
+    "E07": {
+      "line_count": 4,
+      "zero_leakage": true
+    },
+    "E08": {
+      "line_count": 4,
+      "zero_leakage": true
+    },
+    "E09": {
+      "line_count": 5,
+      "zero_leakage": true
+    },
+    "E10": {
+      "line_count": 5,
+      "zero_leakage": true
+    }
+  },
+  "performance": {
+    "peak_rps": 5718.291867773058,
+    "total_allocated_mb": 450.0,
+    "max_heap_mb": 92.5,
+    "gc_minor_collections": 1162,
+    "gc_major_collections": 8,
+    "gc_pause_total_ms": 12.5
+  }
+}

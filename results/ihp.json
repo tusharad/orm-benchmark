@@ -1,0 +1,216 @@
+{
+  "canonical_queries": {
+    "HQ01": {
+      "loc": 25,
+      "notes": "10k flight entities hydrated via IHP fetch",
+      "p50_ms": 67.853,
+      "p95_ms": 75.644,
+      "p99_ms": 75.644,
+      "rows_per_sec": 144223.56,
+      "status": "✅"
+    },
+    "HQ02": {
+      "loc": 35,
+      "notes": "5k 4-table joined records via unsafeSqlQuery",
+      "p50_ms": 51.568,
+      "p95_ms": 54.033,
+      "p99_ms": 54.033,
+      "rows_per_sec": 96504.98,
+      "status": "✅"
+    },
+    "HQ03": {
+      "loc": 20,
+      "notes": "4-level deep hierarchy assembly",
+      "p50_ms": 4.905,
+      "p95_ms": 4.986,
+      "p99_ms": 4.986,
+      "status": "✅"
+    },
+    "HQ04": {
+      "loc": 30,
+      "notes": "Account relationship graph with outer joins",
+      "p50_ms": 67.293,
+      "p95_ms": 74.596,
+      "p99_ms": 74.596,
+      "status": "✅"
+    },
+    "HQ05": {
+      "loc": 35,
+      "notes": "5-table analytical route profitability ledger",
+      "p50_ms": 364.344,
+      "p95_ms": 369.944,
+      "p99_ms": 369.944,
+      "status": "✅"
+    },
+    "HQ06": {
+      "loc": 45,
+      "notes": "3 chained CTEs for hub centrality and network degree",
+      "p50_ms": 87.114,
+      "p95_ms": 87.316,
+      "p99_ms": 87.316,
+      "status": "✅"
+    },
+    "HQ07": {
+      "loc": 35,
+      "notes": "Correlated capacity subqueries with loyalty cross-check",
+      "p50_ms": 103.568,
+      "p95_ms": 104.773,
+      "p99_ms": 104.773,
+      "status": "✅"
+    },
+    "HQ08": {
+      "loc": 45,
+      "notes": "Recursive multi-hop flight connection graph search",
+      "p50_ms": 303.254,
+      "p95_ms": 304.033,
+      "p99_ms": 304.033,
+      "status": "✅"
+    },
+    "HQ09": {
+      "loc": 40,
+      "notes": "Multi-window statistical delay dispersion and cascades",
+      "p50_ms": 15.756,
+      "p95_ms": 16.726,
+      "p99_ms": 16.726,
+      "status": "✅"
+    },
+    "HQ10": {
+      "loc": 20,
+      "notes": "High-throughput keyset cursor pagination",
+      "p50_ms": 8.885,
+      "p95_ms": 9.017,
+      "p99_ms": 9.017,
+      "status": "✅"
+    },
+    "HQ11": {
+      "loc": 35,
+      "notes": "Dynamic faceted flight search with multi-parameter filter",
+      "p50_ms": 0.532,
+      "p95_ms": 0.575,
+      "p99_ms": 0.575,
+      "status": "✅"
+    },
+    "HQ12": {
+      "loc": 15,
+      "notes": "High-volume 2,500 record batch upsert ON CONFLICT",
+      "p50_ms": 17.760,
+      "p95_ms": 17.760,
+      "p99_ms": 17.760,
+      "status": "✅"
+    },
+    "HQ13": {
+      "loc": 18,
+      "notes": "Optimistic concurrency bulk update",
+      "p50_ms": 2.565,
+      "p95_ms": 2.717,
+      "p99_ms": 2.717,
+      "status": "✅"
+    },
+    "HQ14": {
+      "loc": 25,
+      "notes": "High-concurrency seat allocation under contention",
+      "p50_ms": 0.441,
+      "p95_ms": 0.538,
+      "p99_ms": 0.538,
+      "rows_per_sec": 9564.80,
+      "status": "✅"
+    },
+    "HQ15": {
+      "loc": 25,
+      "notes": "Distributed financial points transfer in transaction",
+      "p50_ms": 0.710,
+      "p95_ms": 0.751,
+      "p99_ms": 0.751,
+      "status": "✅"
+    },
+    "HQ16": {
+      "loc": 30,
+      "notes": "Multi-modal hybrid pgvector + BM25 RRF search",
+      "p50_ms": 2.940,
+      "p95_ms": 3.189,
+      "p99_ms": 3.189,
+      "status": "✅"
+    }
+  },
+  "concurrency_benchmarks": {
+    "C1": {
+      "concurrency": 1,
+      "p99_ms": 15.179,
+      "rps": 106.76
+    },
+    "C10": {
+      "concurrency": 10,
+      "p99_ms": 56.383,
+      "rps": 361.11
+    },
+    "C50": {
+      "concurrency": 50,
+      "p99_ms": 179.045,
+      "rps": 360.38
+    },
+    "C100": {
+      "concurrency": 100,
+      "p99_ms": 327.382,
+      "rps": 351.08
+    }
+  },
+  "deliberate_mistakes": {
+    "E01": { "line_count": 9, "zero_leakage": true },
+    "E02": { "line_count": 9, "zero_leakage": true },
+    "E03": { "line_count": 25, "zero_leakage": true },
+    "E04": { "line_count": 13, "zero_leakage": true },
+    "E05": { "line_count": 12, "zero_leakage": true },
+    "E06": { "line_count": 26, "zero_leakage": true },
+    "E07": { "line_count": 8, "zero_leakage": true },
+    "E08": { "line_count": 8, "zero_leakage": true },
+    "E09": { "line_count": 12, "zero_leakage": true },
+    "E10": { "line_count": 2, "zero_leakage": true }
+  },
+  "deliberate_mistakes_log": "E01_TypeMismatch: 9 lines | PASS (Zero Leakage)\nE02_JoinKeyMismatch: 9 lines | PASS (Zero Leakage)\nE03_MissingGroupBy: 25 lines | PASS (Zero Leakage)\nE04_IoEscape: 13 lines | PASS (Zero Leakage)\nE05_NullabilityViolation: 12 lines | PASS (Zero Leakage)\nE06_UnknownColumn: 26 lines | PASS (Zero Leakage)\nE07_WindowInWhere: 8 lines | PASS (Zero Leakage)\nE08_DanglingJoin: 8 lines | PASS (Zero Leakage)\nE09_MutatePrimaryKey: 12 lines | PASS (Zero Leakage)\nE10_ScopeLeak: 2 lines | PASS (Zero Leakage)",
+  "ergonomics": {
+    "blast_radius_files": 1,
+    "blast_radius_lines": 1,
+    "loc": 410,
+    "operator_score": 9.3,
+    "tokens": 1950,
+    "unique_operators": 6
+  },
+  "hydration_benchmarks": {
+    "HQ01": {
+      "duration_ms": 67.853,
+      "rows_per_sec": 144223.56,
+      "total_fields": 120000,
+      "total_rows": 10000
+    },
+    "HQ02": {
+      "duration_ms": 51.568,
+      "rows_per_sec": 96504.98,
+      "total_fields": 85000,
+      "total_rows": 5000
+    }
+  },
+  "language": "Haskell",
+  "orm": "ihp",
+  "path": "../ihp/ihp-postgres-air-bench",
+  "performance": {
+    "gc_major_collections": 14,
+    "gc_minor_collections": 412,
+    "gc_pause_total_ms": 62.5,
+    "max_heap_mb": 76.0,
+    "peak_rps": 361.11,
+    "total_allocated_mb": 1850.0
+  },
+  "summary": {
+    "avg_p95_ms": 70.41,
+    "blast_radius_lines": 1,
+    "hydration_rows_sec": 144223.56,
+    "max_heap_mb": 76.0,
+    "mistake_score": 10,
+    "overall_score": 89.1,
+    "passed_queries": 16,
+    "peak_rps": 361.11,
+    "total_queries": 16
+  },
+  "timestamp": "2026-11-16 00:29:28 UTC",
+  "version": "1.6.0"
+}

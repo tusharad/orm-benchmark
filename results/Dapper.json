@@ -1,0 +1,245 @@
+{
+  "orm": "Dapper",
+  "language": "C# / .NET 8",
+  "version": "2.1.35",
+  "timestamp": "2026-11-15T17:53:01.8521708Z",
+  "path": "../Dapper/bench",
+  "canonical_queries": {
+    "HQ01": {
+      "status": "\u2705",
+      "loc": 11,
+      "notes": "10k flight entities hydrated",
+      "p50_ms": 22.204382,
+      "p95_ms": 23.168799,
+      "p99_ms": 23.168799,
+      "rows_per_sec": 1279037.6725197986
+    },
+    "HQ02": {
+      "status": "\u2705",
+      "loc": 27,
+      "notes": "5k 4-table joined records",
+      "p50_ms": 18.157881,
+      "p95_ms": 19.559215,
+      "p99_ms": 19.559215,
+      "rows_per_sec": 648147.4519897738
+    },
+    "HQ03": {
+      "status": "\u2705",
+      "loc": 44,
+      "notes": "4-level deep graph assembly (0 N\u002B1)",
+      "p50_ms": 13.037921,
+      "p95_ms": 14.022297,
+      "p99_ms": 14.022297
+    },
+    "HQ04": {
+      "status": "\u2705",
+      "loc": 16,
+      "notes": "Account graph with 7,000 joined records",
+      "p50_ms": 23.8928,
+      "p95_ms": 24.708341,
+      "p99_ms": 24.708341
+    },
+    "HQ05": {
+      "status": "\u2705",
+      "loc": 22,
+      "notes": "5-table analytical ledger over 410k rows",
+      "p50_ms": 367.625536,
+      "p95_ms": 371.286495,
+      "p99_ms": 371.286495
+    },
+    "HQ06": {
+      "status": "\u2705",
+      "loc": 44,
+      "notes": "3 chained CTEs hub centrality over 112k flights",
+      "p50_ms": 88.582778,
+      "p95_ms": 91.146196,
+      "p99_ms": 91.146196
+    },
+    "HQ07": {
+      "status": "\u2705",
+      "loc": 32,
+      "notes": "Correlated subqueries in SELECT \u0026 WHERE",
+      "p50_ms": 104.636492,
+      "p95_ms": 105.239159,
+      "p99_ms": 105.239159
+    },
+    "HQ08": {
+      "status": "\u2705",
+      "loc": 45,
+      "notes": "Recursive 1- to 3-hop itinerary graph traversal",
+      "p50_ms": 304.983016,
+      "p95_ms": 305.690224,
+      "p99_ms": 305.690224
+    },
+    "HQ09": {
+      "status": "\u2705",
+      "loc": 36,
+      "notes": "4 simultaneous window functions with framing",
+      "p50_ms": 6.270627,
+      "p95_ms": 6.403919,
+      "p99_ms": 6.403919
+    },
+    "HQ10": {
+      "status": "\u2705",
+      "loc": 13,
+      "notes": "Composite keyset cursor pagination",
+      "p50_ms": 12.738462,
+      "p95_ms": 12.828629,
+      "p99_ms": 12.828629
+    },
+    "HQ11": {
+      "status": "\u2705",
+      "loc": 38,
+      "notes": "Dynamic faceted search with 10 predicates",
+      "p50_ms": 8.321211,
+      "p95_ms": 8.813587,
+      "p99_ms": 8.813587
+    },
+    "HQ12": {
+      "status": "\u2705",
+      "loc": 19,
+      "notes": "High-volume 2,500 rows batch upsert",
+      "p50_ms": 8.503003,
+      "p95_ms": 11.992378,
+      "p99_ms": 11.992378
+    },
+    "HQ13": {
+      "status": "\u2705",
+      "loc": 15,
+      "notes": "Optimistic version increment",
+      "p50_ms": 2.441709,
+      "p95_ms": 2.878542,
+      "p99_ms": 2.878542
+    },
+    "HQ14": {
+      "status": "\u2705",
+      "loc": 28,
+      "notes": "Concurrent seat reservation with FOR UPDATE",
+      "p50_ms": 0.9375,
+      "p95_ms": 1.064167,
+      "p99_ms": 28.693884,
+      "rows_per_sec": 3423.6843636911426
+    },
+    "HQ15": {
+      "status": "\u2705",
+      "loc": 41,
+      "notes": "Serializable points transfer with 40001 retry",
+      "p50_ms": 0.577459,
+      "p95_ms": 0.681541,
+      "p99_ms": 0.681541
+    },
+    "HQ16": {
+      "status": "\u2705",
+      "loc": 34,
+      "notes": "Hybrid 384-dim HNSW \u002B BM25 RRF search",
+      "p50_ms": 2.961751,
+      "p95_ms": 3.213334,
+      "p99_ms": 3.213334
+    }
+  },
+  "hydration_benchmarks": {
+    "HQ01": {
+      "duration_ms": 7.818378,
+      "rows_per_sec": 1279037.6725197986,
+      "total_rows": 10000,
+      "total_fields": 120000
+    },
+    "HQ02": {
+      "duration_ms": 7.714294,
+      "rows_per_sec": 648147.4519897738,
+      "total_rows": 5000,
+      "total_fields": 85000
+    }
+  },
+  "concurrency_benchmarks": {
+    "C1": {
+      "concurrency": 1,
+      "rps": 79.25089517848649,
+      "p99_ms": 14.936588
+    },
+    "C10": {
+      "concurrency": 10,
+      "rps": 232.39119618488022,
+      "p99_ms": 37.750095
+    },
+    "C50": {
+      "concurrency": 50,
+      "rps": 253.93446053147468,
+      "p99_ms": 136.985628
+    },
+    "C100": {
+      "concurrency": 100,
+      "rps": 263.63479620766617,
+      "p99_ms": 121.652414
+    }
+  },
+  "deliberate_mistakes": {
+    "E01": {
+      "line_count": 6,
+      "zero_leakage": true
+    },
+    "E02": {
+      "line_count": 6,
+      "zero_leakage": true
+    },
+    "E03": {
+      "line_count": 6,
+      "zero_leakage": true
+    },
+    "E04": {
+      "line_count": 6,
+      "zero_leakage": true
+    },
+    "E05": {
+      "line_count": 6,
+      "zero_leakage": true
+    },
+    "E06": {
+      "line_count": 6,
+      "zero_leakage": true
+    },
+    "E07": {
+      "line_count": 6,
+      "zero_leakage": true
+    },
+    "E08": {
+      "line_count": 6,
+      "zero_leakage": true
+    },
+    "E09": {
+      "line_count": 6,
+      "zero_leakage": true
+    },
+    "E10": {
+      "line_count": 6,
+      "zero_leakage": true
+    }
+  },
+  "performance": {
+    "total_allocated_mb": 211.78,
+    "max_heap_mb": 87.27,
+    "gc_minor_collections": 41,
+    "gc_major_collections": 7,
+    "gc_pause_total_ms": 0,
+    "peak_rps": 263.63
+  },
+  "ergonomics": {
+    "loc": 465,
+    "tokens": 2100,
+    "unique_operators": 6,
+    "operator_score": 9.2,
+    "blast_radius_lines": 1,
+    "blast_radius_files": 1
+  },
+  "summary": {
+    "overall_score": 89.5,
+    "passed_queries": 16,
+    "total_queries": 16,
+    "avg_p95_ms": 62.67,
+    "hydration_rows_sec": 1279038,
+    "peak_rps": 263.63,
+    "max_heap_mb": 87.27,
+    "blast_radius_lines": 1,
+    "mistake_score": 10
+  }
+}

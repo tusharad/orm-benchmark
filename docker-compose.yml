@@ -1,0 +1,31 @@
+services:
+  postgres-air:
+    image: pgvector/pgvector:pg17
+    container_name: postgres-air
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres_air
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres_air_data:/var/lib/postgresql/data
+      - .:/backup:ro
+    command:
+      - "postgres"
+      - "-c"
+      - "shared_buffers=1GB"
+      - "-c"
+      - "work_mem=64MB"
+      - "-c"
+      - "maintenance_work_mem=512MB"
+      - "-c"
+      - "max_wal_size=4GB"
+      - "-c"
+      - "checkpoint_completion_target=0.9"
+      - "-c"
+      - "max_connections=250"
+    restart: unless-stopped
+
+volumes:
+  postgres_air_data:

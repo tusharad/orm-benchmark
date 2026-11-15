@@ -1,0 +1,97 @@
+{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE OverloadedStrings #-}
+
+module Model where
+
+import Data.Int (Int32, Int64)
+import Data.Text (Text)
+import Data.Time (UTCTime)
+import GHC.Generics (Generic)
+
+-- 1. Airport
+data Airport = Airport
+  { airportCode :: Text
+  , airportName :: Text
+  , city        :: Text
+  , airportTz   :: Text
+  , intnl       :: Bool
+  , description :: Maybe Text
+  } deriving (Show, Eq, Generic)
+
+-- 2. Flight
+data Flight = Flight
+  { flightId           :: Int32
+  , flightNo           :: Text
+  , scheduledDeparture :: UTCTime
+  , scheduledArrival   :: UTCTime
+  , departureAirport   :: Text
+  , arrivalAirport     :: Text
+  , status             :: Text
+  , aircraftCode       :: Text
+  , actualDeparture    :: Maybe UTCTime
+  , actualArrival      :: Maybe UTCTime
+  , version            :: Int32
+  } deriving (Show, Eq, Generic)
+
+-- 3. Account
+data Account = Account
+  { accountId       :: Int32
+  , login           :: Text
+  , firstName       :: Text
+  , lastName        :: Text
+  , frequentFlyerId :: Maybe Int32
+  , version         :: Int32
+  } deriving (Show, Eq, Generic)
+
+-- 4. FrequentFlyer
+data FrequentFlyer = FrequentFlyer
+  { frequentFlyerIdPK :: Int32
+  , level             :: Int32
+  , awardPoints       :: Int32
+  } deriving (Show, Eq, Generic)
+
+-- 5. Booking
+data Booking = Booking
+  { bookingId   :: Int64
+  , bookingRef  :: Text
+  , bookingName :: Maybe Text
+  , accountIdFK :: Maybe Int32
+  , price       :: Double
+  } deriving (Show, Eq, Generic)
+
+-- 6. BookingLeg
+data BookingLeg = BookingLeg
+  { bookingLegId :: Int32
+  , bookingIdFK  :: Int64
+  , flightIdFK   :: Int32
+  , legNum       :: Int32
+  } deriving (Show, Eq, Generic)
+
+-- 7. BoardingPass
+data BoardingPass = BoardingPass
+  { passId         :: Int32
+  , passengerIdFK  :: Int64
+  , bookingLegIdFK :: Int64
+  , seat           :: Text
+  , boardingTime   :: Maybe UTCTime
+  } deriving (Show, Eq, Generic)
+
+-- 8. Passenger
+data Passenger = Passenger
+  { passengerId   :: Int32
+  , bookingIdFK2  :: Int64
+  , accountIdFK2  :: Maybe Int32
+  , firstNamePass :: Text
+  , lastNamePass  :: Text
+  } deriving (Show, Eq, Generic)
+
+-- 9. Employee (Hierarchy / Self-Join)
+data Employee = Employee
+  { employeeId :: Int32
+  , empFirst   :: Text
+  , empLast    :: Text
+  , empEmail   :: Text
+  , department :: Text
+  , salary     :: Double
+  , managerId  :: Maybe Int32
+  } deriving (Show, Eq, Generic)

@@ -1,0 +1,89 @@
+{-# LANGUAGE OverloadedStrings #-}
+
+module Main where
+
+import Control.Concurrent.Async (replicateConcurrently)
+import Control.Monad (forM, replicateM, when)
+import Data.Aeson (encode)
+import qualified Data.ByteString.Lazy.Char8 as BSL
+import Data.Int (Int64)
+import Data.List (sort)
+import Data.Time.Clock.POSIX (getPOSIXTime)
+import GHC.Stats (RTSStats(..), GCDetails(..), getRTSStats, getRTSStatsEnabled)
+import System.CPUTime (getCPUTime)
+import System.IO (hPutStrLn, stderr)
+
+import Model
+import Queries
+
+-- Helper for High-Resolution Nanosecond Timing
+getTimeNs :: IO Int64
+getTimeNs = do
+  t <- getPOSIXTime
+  return $ round (t * 1000000000)
+
+calcPercentiles :: [Double] -> (Double, Double, Double)
+calcPercentiles [] = (0, 0, 0)
+calcPercentiles xs =
+  let s = sort xs
+      n = length s
+      p50 = s !! (n * 50 `div` 100)
+      p95 = s !! (n * 95 `div` 100)
+      p99 = s !! (n * 99 `div` 100)
+  in (p50, p95, p99)
+
+measureQuery :: String -> IO a -> Int -> IO (Double, Double, Double)
+measureQuery label action iterations = do
+  -- Warmup
+  replicateM 20 action
+  
+  -- Timing runs
+  timings <- forM [1..iterations] $ \_ -> do
+    t0 <- getTimeNs
+    _ <- action
+    t1 <- getTimeNs
+    return $ fromIntegral (t1 - t0) / 1000000.0 -- ms
+    
+  let (p50, p95, p99) = calcPercentiles timings
+  putStrLn $ "[" ++ label ++ "] p50=" ++ show p50 ++ "ms, p95=" ++ show p95 ++ "ms, p99=" ++ show p99 ++ "ms"
+  return (p50, p95, p99)
+
+main :: IO ()
+main = do
+  putStrLn "=== Starting Postgres Air Haskell ORM Benchmark Harness ==="
+  
+  rtsEnabled <- getRTSStatsEnabled
+  when (not rtsEnabled) $ do
+    hPutStrLn stderr "Warning: GHC RTS Stats not enabled. Run with +RTS -T to collect memory/GC stats."
+
+  let dbHandle = ()
+  
+  -- Measure Canonical Queries
+  putStrLn "--- Executing Canonical Queries (Q01 - Q15) ---"
+  -- (Uncomment as each query is implemented)
+  -- q1Stats <- measureQuery "Q01: Point Lookup" (q01PointLookup dbHandle 42000) 500
+  
+  -- Measure Concurrency
+  putStrLn "--- Executing Concurrency Load Test (C=50) ---"
+  let concurrentOps = 1000
+  t0 <- getTimeNs
+  _ <- replicateConcurrently 50 $ do
+    replicateM (concurrentOps `div` 50) (return ())
+  t1 <- getTimeNs
+  let totalSec = fromIntegral (t1 - t0) / 1000000000.0
+  let rps = fromIntegral concurrentOps / totalSec
+  putStrLn $ "Throughput: " ++ show rps ++ " requests/sec"
+
+  -- Collect GC Stats
+  if rtsEnabled then do
+    stats <- getRTSStats
+    let allocMb = fromIntegral (allocated_bytes stats) / (1024 * 1024.0) :: Double
+    let maxHeapMb = fromIntegral (max_live_bytes stats) / (1024 * 1024.0) :: Double
+    let majorGCs = gcs stats
+    putStrLn $ "Total Allocated: " ++ show allocMb ++ " MB"
+    putStrLn $ "Max Live Heap: " ++ show maxHeapMb ++ " MB"
+    putStrLn $ "GC Collections: " ++ show majorGCs
+  else
+    putStrLn "RTS stats omitted."
+    
+  putStrLn "=== Benchmark Completed ==="

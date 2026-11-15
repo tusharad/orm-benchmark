@@ -1,0 +1,249 @@
+{
+  "orm": "rails",
+  "language": "Ruby",
+  "version": "Ruby 4.0.9 / ActiveRecord 8.1.4.1",
+  "timestamp": "2026-11-15T15:40:49Z",
+  "path": "../rails/bench",
+  "summary": {
+    "overall_score": 87.5,
+    "passed_queries": 16,
+    "total_queries": 16,
+    "avg_p95_ms": 85.34,
+    "peak_rps": 247.44,
+    "hydration_rows_sec": 89792,
+    "max_heap_mb": 150.0,
+    "blast_radius_lines": 1,
+    "mistake_score": 10
+  },
+  "canonical_queries": {
+    "HQ01": {
+      "status": "✅",
+      "p50_ms": 111.36800000167568,
+      "p95_ms": 115.09300000034273,
+      "p99_ms": 115.09300000034273,
+      "loc": 4,
+      "rows_per_sec": 89792.39996991538,
+      "notes": "10k flight entities hydrated"
+    },
+    "HQ02": {
+      "status": "✅",
+      "p50_ms": 17.66000000134227,
+      "p95_ms": 27.970999999524793,
+      "p99_ms": 27.970999999524793,
+      "loc": 14,
+      "rows_per_sec": 283125.70779275027,
+      "notes": "5k 4-table joined records"
+    },
+    "HQ03": {
+      "status": "✅",
+      "p50_ms": 25.471999997535022,
+      "p95_ms": 30.14400000029127,
+      "p99_ms": 30.14400000029127,
+      "loc": 6,
+      "notes": "4-level deep graph assembly with includes (0 N+1)"
+    },
+    "HQ04": {
+      "status": "✅",
+      "p50_ms": 8.83599999724538,
+      "p95_ms": 12.715999997453764,
+      "p99_ms": 12.715999997453764,
+      "loc": 6,
+      "notes": "Account graph with nested includes"
+    },
+    "HQ05": {
+      "status": "✅",
+      "p50_ms": 716.5170000007492,
+      "p95_ms": 719.9260000015784,
+      "p99_ms": 719.9260000015784,
+      "loc": 24,
+      "notes": "5-table analytical ledger over 410k rows"
+    },
+    "HQ06": {
+      "status": "✅",
+      "p50_ms": 15.9780000030878,
+      "p95_ms": 16.075999999884516,
+      "p99_ms": 16.075999999884516,
+      "loc": 26,
+      "notes": "3 chained CTEs hub centrality over 112k flights"
+    },
+    "HQ07": {
+      "status": "✅",
+      "p50_ms": 106.46600000109174,
+      "p95_ms": 107.47800000171992,
+      "p99_ms": 107.47800000171992,
+      "loc": 22,
+      "notes": "Correlated subqueries in SELECT & WHERE"
+    },
+    "HQ08": {
+      "status": "✅",
+      "p50_ms": 261.3629999978002,
+      "p95_ms": 298.54599999816855,
+      "p99_ms": 298.54599999816855,
+      "loc": 25,
+      "notes": "Recursive 1- to 3-hop itinerary graph traversal"
+    },
+    "HQ09": {
+      "status": "✅",
+      "p50_ms": 2.2969999990891665,
+      "p95_ms": 2.599999999802094,
+      "p99_ms": 2.599999999802094,
+      "loc": 20,
+      "notes": "4 simultaneous window functions with framing"
+    },
+    "HQ10": {
+      "status": "✅",
+      "p50_ms": 12.772999998560408,
+      "p95_ms": 13.49599999957718,
+      "p99_ms": 13.49599999957718,
+      "loc": 6,
+      "notes": "Composite keyset cursor pagination"
+    },
+    "HQ11": {
+      "status": "✅",
+      "p50_ms": 1.2800000004062895,
+      "p95_ms": 4.599000003508991,
+      "p99_ms": 4.599000003508991,
+      "loc": 16,
+      "notes": "Dynamic faceted search with 10 predicates"
+    },
+    "HQ12": {
+      "status": "✅",
+      "p50_ms": 7.864999999583233,
+      "p95_ms": 8.576000000175554,
+      "p99_ms": 8.576000000175554,
+      "loc": 16,
+      "notes": "ActiveRecord 2,500 rows batch upsert"
+    },
+    "HQ13": {
+      "status": "✅",
+      "p50_ms": 0.28000000020256266,
+      "p95_ms": 0.29999999969732016,
+      "p99_ms": 0.29999999969732016,
+      "loc": 4,
+      "notes": "Optimistic version increment with update_all"
+    },
+    "HQ14": {
+      "status": "✅",
+      "p50_ms": 0.5909999999857973,
+      "p95_ms": 0.6649999995715916,
+      "p99_ms": 0.6649999995715916,
+      "loc": 8,
+      "rows_per_sec": 227.56,
+      "notes": "Concurrent seat allocation with lock(\"FOR UPDATE\")"
+    },
+    "HQ15": {
+      "status": "✅",
+      "p50_ms": 1.2590000005729962,
+      "p95_ms": 1.3199999993958045,
+      "p99_ms": 1.3199999993958045,
+      "loc": 18,
+      "notes": "Serializable points transfer with retry"
+    },
+    "HQ16": {
+      "status": "✅",
+      "p50_ms": 5.650000002788147,
+      "p95_ms": 5.868000000191387,
+      "p99_ms": 5.868000000191387,
+      "loc": 22,
+      "notes": "Hybrid 384-dim HNSW + BM25 RRF search"
+    }
+  },
+  "hydration_benchmarks": {
+    "HQ01": {
+      "total_rows": 10000,
+      "duration_ms": 111.36800000167568,
+      "p50_ms": 111.36800000167568,
+      "p95_ms": 115.09300000034273,
+      "p99_ms": 115.09300000034273,
+      "rows_per_sec": 89792.39996991538
+    },
+    "HQ02": {
+      "total_rows": 5000,
+      "duration_ms": 17.66000000134227,
+      "p50_ms": 17.66000000134227,
+      "p95_ms": 27.970999999524793,
+      "p99_ms": 27.970999999524793,
+      "rows_per_sec": 283125.70779275027
+    }
+  },
+  "concurrency_benchmarks": {
+    "C1": {
+      "concurrency": 1,
+      "rps": 78.04,
+      "p99_ms": 26.93
+    },
+    "C10": {
+      "concurrency": 10,
+      "rps": 247.44,
+      "p99_ms": 71.36
+    },
+    "C50": {
+      "concurrency": 50,
+      "rps": 239.53,
+      "p99_ms": 262.33
+    },
+    "C100": {
+      "concurrency": 100,
+      "rps": 227.56,
+      "p99_ms": 497.99
+    }
+  },
+  "ergonomics": {
+    "loc": 260,
+    "tokens": 1540,
+    "unique_operators": 7,
+    "operator_score": 9.0,
+    "blast_radius_lines": 1,
+    "blast_radius_files": 1
+  },
+  "deliberate_mistakes": {
+    "E01": {
+      "line_count": 3,
+      "zero_leakage": true
+    },
+    "E02": {
+      "line_count": 3,
+      "zero_leakage": true
+    },
+    "E03": {
+      "line_count": 3,
+      "zero_leakage": true
+    },
+    "E04": {
+      "line_count": 1,
+      "zero_leakage": true
+    },
+    "E05": {
+      "line_count": 3,
+      "zero_leakage": true
+    },
+    "E06": {
+      "line_count": 5,
+      "zero_leakage": true
+    },
+    "E07": {
+      "line_count": 3,
+      "zero_leakage": true
+    },
+    "E08": {
+      "line_count": 3,
+      "zero_leakage": true
+    },
+    "E09": {
+      "line_count": 1,
+      "zero_leakage": true
+    },
+    "E10": {
+      "line_count": 3,
+      "zero_leakage": true
+    }
+  },
+  "performance": {
+    "peak_rps": 247.4,
+    "total_allocated_mb": 512.0,
+    "max_heap_mb": 150.0,
+    "gc_minor_collections": 0,
+    "gc_major_collections": 0,
+    "gc_pause_total_ms": 0.0
+  }
+}

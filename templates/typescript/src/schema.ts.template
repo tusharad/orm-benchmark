@@ -1,0 +1,46 @@
+/**
+ * PostgresAir Canonical TypeScript Schema Representation
+ */
+
+export interface Airport {
+  airport_code: string;
+  airport_name: string;
+  city: string;
+  airport_tz: string;
+  intnl: boolean;
+  description?: string | null;
+  embedding?: number[] | null;
+}
+
+export interface Flight {
+  flight_id: number;
+  flight_no: string;
+  scheduled_departure: Date;
+  scheduled_arrival: Date;
+  departure_airport: string;
+  arrival_airport: string;
+  status: string;
+  aircraft_code: string;
+  actual_departure?: Date | null;
+  actual_arrival?: Date | null;
+  version: number;
+}
+
+export interface Account {
+  account_id: number;
+  login: string;
+  first_name: string;
+  last_name: string;
+  frequent_flyer_id?: number | null;
+  version: number;
+}
+
+export interface Employee {
+  employee_id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  department: string;
+  salary: number;
+  manager_id?: number | null;
+}

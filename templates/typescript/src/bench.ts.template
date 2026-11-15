@@ -1,0 +1,63 @@
+/**
+ * TypeScript Benchmark Runner for Postgres Air
+ */
+import { performance } from "perf_hooks";
+
+function calcPercentiles(numbers: number[]): { p50: number; p95: number; p99: number } {
+  if (numbers.length === 0) return { p50: 0, p95: 0, p99: 0 };
+  const sorted = [...numbers].sort((a, b) => a - b);
+  const n = sorted.length;
+  return {
+    p50: sorted[Math.floor(n * 0.5)],
+    p95: sorted[Math.floor(n * 0.95)],
+    p99: sorted[Math.floor(n * 0.99)],
+  };
+}
+
+async function measureQuery(label: string, fn: () => Promise<any>, iterations = 500) {
+  // Warmup
+  for (let i = 0; i < 20; i++) await fn();
+
+  const timings: number[] = [];
+  for (let i = 0; i < iterations; i++) {
+    const t0 = performance.now();
+    await fn();
+    const t1 = performance.now();
+    timings.push(t1 - t0);
+  }
+
+  const { p50, p95, p99 } = calcPercentiles(timings);
+  console.log(`[${label}] p50=${p50.toFixed(2)}ms, p95=${p95.toFixed(2)}ms, p99=${p99.toFixed(2)}ms`);
+  return { p50, p95, p99 };
+}
+
+async function main() {
+  console.log("=== Starting Postgres Air TypeScript ORM Benchmark Harness ===");
+  const memBefore = process.memoryUsage();
+
+  // Benchmark Execution
+  console.log("--- Executing Canonical Queries (Q01 - Q15) ---");
+  // await measureQuery("Q01: Point Lookup", () => q01PointLookup(db, 42000), 500);
+
+  // Concurrency Test (C=50)
+  console.log("--- Executing Concurrency Load Test (C=50) ---");
+  const totalOps = 1000;
+  const t0 = performance.now();
+  const tasks = Array.from({ length: 50 }, async () => {
+    for (let i = 0; i < totalOps / 50; i++) {
+      // Simulate/Execute concurrent queries
+    }
+  });
+  await Promise.all(tasks);
+  const t1 = performance.now();
+  const rps = (totalOps / (t1 - t0)) * 1000;
+  console.log(`Throughput: ${rps.toFixed(0)} requests/sec`);
+
+  const memAfter = process.memoryUsage();
+  const heapUsedMb = (memAfter.heapUsed - memBefore.heapUsed) / (1024 * 1024);
+  console.log(`Heap Delta: ${heapUsedMb.toFixed(2)} MB`);
+  console.log(`Max RSS: ${(memAfter.rss / (1024 * 1024)).toFixed(2)} MB`);
+  console.log("=== Benchmark Completed ===");
+}
+
+main().catch(console.error);
