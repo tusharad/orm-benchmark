@@ -1,0 +1,294 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgres://postgres:postgres@localhost:5434/postgres_air?schema=postgres_air"
+  schemas  = ["postgres_air"]
+}
+
+/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
+model account {
+  account_id        Int             @id @default(autoincrement())
+  login             String
+  first_name        String
+  last_name         String
+  frequent_flyer_id Int?
+  update_ts         DateTime?       @db.Timestamptz(6)
+  version           Int             @default(1)
+  frequent_flyer    frequent_flyer? @relation(fields: [frequent_flyer_id], references: [frequent_flyer_id], onDelete: NoAction, onUpdate: NoAction, map: "frequent_flyer_id_fk")
+  booking           booking[]
+  passenger         passenger[]
+  phone             phone[]
+
+  @@index([frequent_flyer_id], map: "account_frequent_flyer_id")
+  @@index([last_name], map: "account_last_name")
+  @@index([login], map: "account_login")
+  @@schema("postgres_air")
+}
+
+model aircraft {
+  model    String?
+  range    Decimal  @db.Decimal
+  class    Int
+  velocity Decimal  @db.Decimal
+  code     String   @id
+  flight   flight[]
+
+  @@schema("postgres_air")
+}
+
+model airport {
+  airport_code                             String                   @id @db.Char(3)
+  airport_name                             String
+  city                                     String
+  airport_tz                               String
+  continent                                String?
+  iso_country                              String?
+  iso_region                               String?
+  intnl                                    Boolean
+  update_ts                                DateTime?                @db.Timestamptz(6)
+  description                              String?
+  embedding                                Unsupported("vector")?
+  search_tsv                               Unsupported("tsvector")?
+  flight_flight_arrival_airportToairport   flight[]                 @relation("flight_arrival_airportToairport")
+  flight_flight_departure_airportToairport flight[]                 @relation("flight_departure_airportToairport")
+
+  @@index([city], map: "airport_city")
+  @@index([embedding], map: "airport_embedding_hnsw_idx")
+  @@index([search_tsv], type: Gin)
+  @@schema("postgres_air")
+}
+
+model boarding_pass {
+  pass_id        Int          @id @default(autoincrement())
+  passenger_id   BigInt?
+  booking_leg_id BigInt?
+  seat           String?
+  boarding_time  DateTime?    @db.Timestamptz(6)
+  precheck       Boolean?
+  update_ts      DateTime?    @db.Timestamptz(6)
+  booking_leg    booking_leg? @relation(fields: [booking_leg_id], references: [booking_leg_id], onDelete: NoAction, onUpdate: NoAction, map: "booking_leg_id_fk")
+  passenger      passenger?   @relation(fields: [passenger_id], references: [passenger_id], onDelete: NoAction, onUpdate: NoAction, map: "passenger_id_fk")
+
+  @@index([booking_leg_id], map: "boarding_pass_booking_leg_id")
+  @@index([passenger_id], map: "boarding_pass_passenger_id")
+  @@index([update_ts], map: "boarding_pass_update_ts")
+  @@schema("postgres_air")
+}
+
+/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
+model booking {
+  booking_id   BigInt        @id
+  booking_ref  String        @unique
+  booking_name String?
+  account_id   Int?
+  email        String
+  phone        String
+  update_ts    DateTime?     @db.Timestamptz(6)
+  price        Decimal?      @db.Decimal(7, 2)
+  account      account?      @relation(fields: [account_id], references: [account_id], onDelete: NoAction, onUpdate: NoAction, map: "booking_account_id_fk")
+  booking_leg  booking_leg[]
+  passenger    passenger[]
+
+  @@index([account_id], map: "booking_account_id")
+  @@index([update_ts], map: "booking_update_ts")
+  @@schema("postgres_air")
+}
+
+model booking_leg {
+  booking_leg_id BigInt          @id @default(autoincrement())
+  booking_id     BigInt
+  flight_id      Int
+  leg_num        Int?
+  is_returning   Boolean?
+  update_ts      DateTime?       @db.Timestamptz(6)
+  boarding_pass  boarding_pass[]
+  booking        booking         @relation(fields: [booking_id], references: [booking_id], onDelete: NoAction, onUpdate: NoAction, map: "booking_id_fk")
+  flight         flight          @relation(fields: [flight_id], references: [flight_id], onDelete: NoAction, onUpdate: NoAction, map: "flight_id_fk")
+
+  @@index([booking_id], map: "booking_leg_booking_id")
+  @@index([flight_id], map: "booking_leg_flight_id")
+  @@index([update_ts], map: "booking_leg_update_ts")
+  @@schema("postgres_air")
+}
+
+model employee {
+  employee_id    Int        @id @default(autoincrement())
+  first_name     String
+  last_name      String
+  email          String     @unique
+  department     String
+  salary         Decimal    @db.Decimal(10, 2)
+  manager_id     Int?
+  employee       employee?  @relation("employeeToemployee", fields: [manager_id], references: [employee_id], onDelete: NoAction, onUpdate: NoAction)
+  other_employee employee[] @relation("employeeToemployee")
+
+  @@index([manager_id], map: "employee_manager_id")
+  @@schema("postgres_air")
+}
+
+model flight {
+  flight_id                                 Int           @id @default(autoincrement())
+  flight_no                                 String
+  scheduled_departure                       DateTime      @db.Timestamptz(6)
+  scheduled_arrival                         DateTime      @db.Timestamptz(6)
+  departure_airport                         String        @db.Char(3)
+  arrival_airport                           String        @db.Char(3)
+  status                                    String
+  aircraft_code                             String        @db.Char(3)
+  actual_departure                          DateTime?     @db.Timestamptz(6)
+  actual_arrival                            DateTime?     @db.Timestamptz(6)
+  update_ts                                 DateTime?     @db.Timestamptz(6)
+  version                                   Int           @default(1)
+  booking_leg                               booking_leg[]
+  aircraft                                  aircraft      @relation(fields: [aircraft_code], references: [code], onDelete: NoAction, onUpdate: NoAction, map: "aircraft_code_fk")
+  airport_flight_arrival_airportToairport   airport       @relation("flight_arrival_airportToairport", fields: [arrival_airport], references: [airport_code], onDelete: NoAction, onUpdate: NoAction, map: "arrival_airport_fk")
+  airport_flight_departure_airportToairport airport       @relation("flight_departure_airportToairport", fields: [departure_airport], references: [airport_code], onDelete: NoAction, onUpdate: NoAction, map: "departure_airport_fk")
+
+  @@index([actual_departure], map: "flight_actual_departure")
+  @@index([arrival_airport], map: "flight_arrival_airport")
+  @@index([departure_airport, arrival_airport, scheduled_departure], map: "flight_depart_arr_sched_dep")
+  @@index([departure_airport, arrival_airport, scheduled_departure, scheduled_arrival], map: "flight_depart_arr_sched_dep_sched_arr")
+  @@index([departure_airport], map: "flight_departure_airport")
+  @@index([scheduled_departure], map: "flight_scheduled_departure")
+  @@index([update_ts], map: "flight_update_ts")
+  @@schema("postgres_air")
+}
+
+model flight_seat_inventory {
+  flight_id      Int
+  seat_no        String
+  passenger_name String?
+  account_id     Int?
+  reserved_at    DateTime? @db.Timestamptz(6)
+  status         String    @default("AVAILABLE")
+  version        Int       @default(1)
+
+  @@id([flight_id, seat_no])
+  @@schema("postgres_air")
+}
+
+model flight_status_update {
+  flight_id        Int       @id
+  status           String
+  actual_departure DateTime? @db.Timestamptz(6)
+  actual_arrival   DateTime? @db.Timestamptz(6)
+  update_ts        DateTime  @default(dbgenerated("clock_timestamp()")) @db.Timestamptz(6)
+  version          Int       @default(1)
+
+  @@schema("postgres_air")
+}
+
+/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
+model frequent_flyer {
+  frequent_flyer_id Int       @id @default(autoincrement())
+  first_name        String
+  last_name         String
+  title             String
+  card_num          String
+  level             Int
+  award_points      Int
+  email             String
+  phone             String
+  update_ts         DateTime? @db.Timestamptz(6)
+  account           account[]
+
+  @@schema("postgres_air")
+}
+
+/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
+model passenger {
+  passenger_id  BigInt          @id @default(autoincrement())
+  booking_id    BigInt
+  booking_ref   String?
+  passenger_no  Int?
+  first_name    String
+  last_name     String
+  account_id    Int?
+  update_ts     DateTime?       @db.Timestamptz(6)
+  age           Int?
+  boarding_pass boarding_pass[]
+  account       account?        @relation(fields: [account_id], references: [account_id], onDelete: NoAction, onUpdate: NoAction, map: "pass_account_id_fk")
+  booking       booking         @relation(fields: [booking_id], references: [booking_id], onDelete: NoAction, onUpdate: NoAction, map: "pass_booking_id_fk")
+
+  @@index([account_id], map: "passenger_account_id")
+  @@index([booking_id], map: "passenger_booking_id")
+  @@index([last_name], map: "passenger_last_name")
+  @@schema("postgres_air")
+}
+
+model phone {
+  phone_id      Int       @id @default(autoincrement())
+  account_id    Int?
+  phone         String?
+  phone_type    String?
+  primary_phone Boolean?
+  update_ts     DateTime? @db.Timestamptz(6)
+  account       account?  @relation(fields: [account_id], references: [account_id], onDelete: NoAction, onUpdate: NoAction, map: "phone_account_id_fk")
+
+  @@index([account_id], map: "phone_account_id")
+  @@index([update_ts], map: "phone_update_ts")
+  @@schema("postgres_air")
+}
+
+model test_child {
+  id          Int          @id
+  parent_id   Int?
+  test_parent test_parent? @relation(fields: [parent_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@schema("postgres_air")
+}
+
+model test_embeddings {
+  id    Int                   @id
+  label String
+  vec   Unsupported("vector")
+
+  @@schema("postgres_air")
+}
+
+model test_parent {
+  id         Int          @id
+  test_child test_child[]
+
+  @@schema("postgres_air")
+}
+
+model test_queue {
+  id     Int     @id
+  status String?
+
+  @@schema("postgres_air")
+}
+
+model test_savepoints {
+  id    Int     @id
+  label String?
+
+  @@schema("postgres_air")
+}
+
+model test_stream {
+  id  Int     @id
+  val String?
+
+  @@schema("postgres_air")
+}
+
+model test_unique {
+  id   Int     @id
+  code String? @unique
+
+  @@schema("postgres_air")
+}
+
+model test_users {
+  id         BigInt   @id @default(autoincrement())
+  username   String   @unique
+  email      String
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+
+  @@schema("postgres_air")
+}

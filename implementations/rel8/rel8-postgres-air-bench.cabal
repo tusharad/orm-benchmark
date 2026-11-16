@@ -1,0 +1,69 @@
+cabal-version:      2.4
+name:               rel8-postgres-air-bench
+version:            1.0.0.0
+synopsis:           Postgres Air Rel8 Heavyweight Benchmark
+license:            MIT
+build-type:         Simple
+
+library
+  exposed-modules:
+    Schema
+    Queries
+  hs-source-dirs:     src
+  default-language:   GHC2021
+  default-extensions:
+    DeriveAnyClass
+    DeriveGeneric
+    DerivingStrategies
+    DuplicateRecordFields
+    GADTs
+    GeneralizedNewtypeDeriving
+    LambdaCase
+    OverloadedStrings
+    RecordWildCards
+    ScopedTypeVariables
+    StandaloneDeriving
+    TypeApplications
+    TypeFamilies
+  build-depends:
+    base >= 4.14 && < 5,
+    rel8,
+    hasql,
+    resource-pool,
+    text,
+    bytestring,
+    time,
+    vector,
+    containers,
+    aeson,
+    scientific,
+    deepseq,
+    clock,
+    async
+  ghc-options: -O2 -Wall -Wno-name-shadowing -Wno-unused-do-bind
+
+executable rel8-air-bench
+  main-is:            Main.hs
+  hs-source-dirs:     app
+  default-language:   GHC2021
+  default-extensions:
+    OverloadedStrings
+    RecordWildCards
+    TypeApplications
+  build-depends:
+    base >= 4.14 && < 5,
+    rel8-postgres-air-bench,
+    rel8,
+    hasql,
+    resource-pool,
+    text,
+    bytestring,
+    time,
+    aeson,
+    vector,
+    clock,
+    async,
+    directory,
+    filepath,
+    deepseq
+  ghc-options: -O2 -threaded -rtsopts "-with-rtsopts=-N -T" -Wall

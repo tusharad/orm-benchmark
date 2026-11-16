@@ -1,0 +1,55 @@
+cabal-version:       2.4
+name:                esqueleto-postgres-air-bench
+version:             0.1.0.0
+synopsis:            Postgres Air Benchmark for Esqueleto ORM
+license:             BSD-3-Clause
+build-type:          Simple
+
+library
+  exposed-modules:     Database.Esqueleto.PostgresAir.Schema
+                     , Database.Esqueleto.PostgresAir.Queries
+  hs-source-dirs:      src
+  build-depends:       base >= 4.14 && < 5
+                     , esqueleto
+                     , persistent
+                     , persistent-postgresql
+                     , postgresql-simple
+                     , text
+                     , bytestring
+                     , time
+                     , vector
+                     , scientific
+                     , aeson
+                     , deepseq
+                     , containers
+                     , unliftio
+                     , monad-logger
+                     , resourcet
+                     , conduit
+                     , template-haskell
+  default-language:    Haskell2010
+  ghc-options:         -Wall -O2 -Wno-orphans -Wno-unused-imports -Wno-name-shadowing -Wno-type-equality-requires-operators
+
+executable esqueleto-air-bench
+  main-is:             Main.hs
+  hs-source-dirs:      app
+  build-depends:       base >= 4.14 && < 5
+                     , esqueleto-postgres-air-bench
+                     , esqueleto
+                     , persistent
+                     , persistent-postgresql
+                     , postgresql-simple
+                     , text
+                     , bytestring
+                     , time
+                     , async
+                     , deepseq
+                     , aeson
+                     , directory
+                     , filepath
+                     , containers
+                     , monad-logger
+                     , unliftio
+                     , resourcet
+  default-language:    Haskell2010
+  ghc-options:         -Wall -O2 -threaded -rtsopts "-with-rtsopts=-N -T"

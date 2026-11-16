@@ -1,0 +1,57 @@
+cabal-version:      3.0
+name:               hasql-postgres-air-bench
+version:            1.0.0.0
+synopsis:           Postgres Air Hasql Heavyweight Benchmark
+license:            MIT
+build-type:         Simple
+
+library
+  exposed-modules:
+    Models
+    Queries
+  hs-source-dirs:     src
+  default-language:   GHC2021
+  default-extensions:
+    OverloadedStrings
+    RecordWildCards
+    LambdaCase
+    BlockArguments
+    DeriveGeneric
+    DeriveAnyClass
+    DuplicateRecordFields
+  build-depends:
+    base >= 4.14 && < 5,
+    hasql,
+    pqi-ffi,
+    text,
+    bytestring,
+    time,
+    aeson,
+    vector,
+    scientific,
+    deepseq
+  ghc-options: -O2 -Wall -Wno-name-shadowing -Wno-unused-do-bind
+
+executable hasql-air-bench
+  main-is:            Main.hs
+  hs-source-dirs:     app
+  default-language:   GHC2021
+  default-extensions:
+    OverloadedStrings
+    RecordWildCards
+    LambdaCase
+    BlockArguments
+  build-depends:
+    base >= 4.14 && < 5,
+    hasql-postgres-air-bench,
+    hasql,
+    pqi-ffi,
+    text,
+    bytestring,
+    time,
+    aeson,
+    vector,
+    async,
+    scientific,
+    deepseq
+  ghc-options: -O2 -threaded -rtsopts "-with-rtsopts=-N -T" -Wall

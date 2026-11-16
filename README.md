@@ -14,33 +14,67 @@
 
 Every ORM was evaluated under **identical conditions**: a standardized **20-connection pool**, zero raw string interpolation (native typed query builders only), and strict domain entity hydration against a real-world **78,232,673 row** database.
 
-| Rank | ORM | Language / Runtime | Overall Score | Passed (HQ01–16) | Avg p95 Latency | Peak RPS ($C=50$) | Hydration Speed | Max Heap RSS | Blast Radius | Compiler UX |
-| :---: | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| 🥇 1 | **[sqlc](https://github.com/sqlc-dev/sqlc)** | Go 1.23 | **89.6** | 16/16 | 58.80 ms | 32,340 ops/s | 1,518,142 rows/s | 25.12 MB | 1 line | 10/10 |
-| 🥈 2 | **[hasql](https://github.com/nikita-volkov/hasql)** | Haskell (GHC 9.10) | **89.5** | 16/16 | 65.83 ms | 277 ops/s | 199,025 rows/s | 13.03 MB | 1 line | 10/10 |
-| 🥉 3 | **[Dapper](https://github.com/DapperLib/Dapper)** | C# / .NET 8 | **89.5** | 16/16 | 62.67 ms | 264 ops/s | 1,279,038 rows/s | 87.27 MB | 1 line | 10/10 |
-| 4 | **[jOOQ](https://github.com/jOOQ/jOOQ)** | Java 21 | **89.4** | 16/16 | 57.71 ms | 9,739 ops/s | 454,966 rows/s | 149.00 MB | 1 line | 10/10 |
-| 5 | **[ent](https://github.com/ent/ent)** | Go 1.23 | **89.3** | 16/16 | 61.36 ms | 246 ops/s | 570,841 rows/s | 25.12 MB | 1 line | 10/10 |
-| 6 | **[ecto](https://github.com/elixir-ecto/ecto)** | Elixir 1.17 / OTP 27 | **89.2** | 16/16 | 58.20 ms | 29,412 ops/s | 354,070 rows/s | 83.06 MB | 1 line | 10/10 |
-| 7 | **[squeal](https://github.com/m-renaud/squeal)** | Haskell (GHC 9.10) | **89.1** | 16/16 | 187.03 ms | 258 ops/s | 15,271 rows/s | 25.17 MB | 1 line | 10/10 |
-| 8 | **[ihp](https://github.com/digitallyinduced/ihp)** | Haskell (GHC 9.10) | **89.1** | 16/16 | 70.41 ms | 361 ops/s | 144,224 rows/s | 76.00 MB | 1 line | 10/10 |
-| 9 | **[hibernate-orm](https://github.com/hibernate/hibernate-orm)** | Java 21 | **89.1** | 16/16 | 62.66 ms | 256 ops/s | 564,130 rows/s | 15.00 MB | 1 line | 10/10 |
-| 10 | **[efcore](https://github.com/dotnet/efcore)** | C# / .NET 8 | **89.0** | 16/16 | 68.51 ms | 260 ops/s | 1,391,131 rows/s | 139.80 MB | 1 line | 10/10 |
-| 11 | **[orville](https://github.com/flipstone/orville)** | Haskell (GHC 9.10) | **88.9** | 16/16 | 73.71 ms | 247 ops/s | 99,705 rows/s | 38.79 MB | 1 line | 10/10 |
-| 12 | **[gorm](https://github.com/go-gorm/gorm)** | Go 1.23 | **88.9** | 16/16 | 58.50 ms | 256 ops/s | 712,657 rows/s | 25.37 MB | 1 line | 10/10 |
-| 13 | **[rel8](https://github.com/circuithub/rel8)** | Haskell (GHC 9.10) | **88.8** | 16/16 | 132.32 ms | 254 ops/s | 122,678 rows/s | 18.75 MB | 1 line | 10/10 |
-| 14 | **[persistent](https://github.com/yesodweb/persistent)** | Haskell (GHC 9.10) | **88.7** | 16/16 | 77.55 ms | 251 ops/s | 103,221 rows/s | 21.03 MB | 1 line | 10/10 |
-| 15 | **[mikro-orm](https://github.com/mikro-orm/mikro-orm)** | TypeScript (Node 22) | **88.7** | 16/16 | 58.19 ms | 3,302 ops/s | 182,594 rows/s | 239.52 MB | 1 line | 10/10 |
-| 16 | **[esqueleto](https://github.com/bitemyapp/esqueleto)** | Haskell (GHC 9.10) | **88.6** | 16/16 | 82.16 ms | 250 ops/s | 85,377 rows/s | 25.22 MB | 2 lines | 10/10 |
-| 17 | **[haskell-opaleye](https://github.com/tomjaguarpaw/haskell-opaleye)** | Haskell (GHC 9.10) | **88.5** | 16/16 | 80.38 ms | 254 ops/s | 101,544 rows/s | 26.54 MB | 2 lines | 10/10 |
-| 18 | **[beam](https://github.com/haskell-beam/beam)** | Haskell (GHC 9.10) | **88.4** | 16/16 | 13.57 ms | 241 ops/s | 113,504 rows/s | 22.39 MB | 6 lines | 10/10 |
-| 19 | **[diesel](https://github.com/diesel-rs/diesel)** | Rust 1.83 | **88.0** | 16/16 | 59.10 ms | 266 ops/s | 1,373,304 rows/s | 33.33 MB | 3 lines | 10/10 |
-| 20 | **[typeorm](https://github.com/typeorm/typeorm)** | TypeScript (Node 22) | **87.8** | 16/16 | 55.99 ms | 235 ops/s | 385,422 rows/s | 71.55 MB | 1 line | 10/10 |
-| 21 | **[rails](https://github.com/rails/rails)** (ActiveRecord) | Ruby 3.3 (YJIT) | **87.5** | 16/16 | 85.34 ms | 247 ops/s | 89,792 rows/s | 150.00 MB | 1 line | 10/10 |
-| 22 | **[sqlalchemy](https://github.com/sqlalchemy/sqlalchemy)** | Python 3.12 (asyncpg) | **87.4** | 16/16 | 72.57 ms | 5,718 ops/s | 279,239 rows/s | 92.50 MB | 1 line | 10/10 |
-| 23 | **[prisma](https://github.com/prisma/prisma)** | TypeScript (Rust Engine) | **87.2** | 16/16 | 83.54 ms | 264 ops/s | 208,122 rows/s | 36.71 MB | 1 line | 10/10 |
-| 24 | **[drizzle-orm](https://github.com/drizzle-team/drizzle-orm)** | TypeScript (Node 22) | **86.8** | 16/16 | 64.45 ms | 242 ops/s | 498,613 rows/s | 184.58 MB | 4 lines | 10/10 |
-| 25 | **[sea-orm](https://github.com/SeaQL/sea-orm)** | Rust 1.83 (sqlx) | **86.7** | 16/16 | 66.15 ms | 272 ops/s | 1,235,677 rows/s | 34.08 MB | 1 line | 10/10 |
+| Rank | ORM | Language / Runtime | Overall Score | Passed (HQ01–16) | Avg p95 Latency | Peak RPS ($C=50$) | Hydration Speed | Max Heap RSS | Blast Radius | Compiler UX | Source Code |
+| :---: | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 🥇 1 | **[sqlc](https://github.com/sqlc-dev/sqlc)** | Go 1.23 | **89.6** | 16/16 | 58.80 ms | 32,340 ops/s | 1,518,142 rows/s | 25.12 MB | 1 line | 10/10 | [`implementations/sqlc`](implementations/sqlc) |
+| 🥈 2 | **[hasql](https://github.com/nikita-volkov/hasql)** | Haskell (GHC 9.10) | **89.5** | 16/16 | 65.83 ms | 277 ops/s | 199,025 rows/s | 13.03 MB | 1 line | 10/10 | [`implementations/hasql`](implementations/hasql) |
+| 🥉 3 | **[Dapper](https://github.com/DapperLib/Dapper)** | C# / .NET 8 | **89.5** | 16/16 | 62.67 ms | 264 ops/s | 1,279,038 rows/s | 87.27 MB | 1 line | 10/10 | [`implementations/dapper`](implementations/dapper) |
+| 4 | **[jOOQ](https://github.com/jOOQ/jOOQ)** | Java 21 | **89.4** | 16/16 | 57.71 ms | 9,739 ops/s | 454,966 rows/s | 149.00 MB | 1 line | 10/10 | [`implementations/jOOQ`](implementations/jOOQ) |
+| 5 | **[ent](https://github.com/ent/ent)** | Go 1.23 | **89.3** | 16/16 | 61.36 ms | 246 ops/s | 570,841 rows/s | 25.12 MB | 1 line | 10/10 | [`implementations/ent`](implementations/ent) |
+| 6 | **[ecto](https://github.com/elixir-ecto/ecto)** | Elixir 1.17 / OTP 27 | **89.2** | 16/16 | 58.20 ms | 29,412 ops/s | 354,070 rows/s | 83.06 MB | 1 line | 10/10 | [`implementations/ecto`](implementations/ecto) |
+| 7 | **[squeal](https://github.com/m-renaud/squeal)** | Haskell (GHC 9.10) | **89.1** | 16/16 | 187.03 ms | 258 ops/s | 15,271 rows/s | 25.17 MB | 1 line | 10/10 | [`implementations/squeal`](implementations/squeal) |
+| 8 | **[ihp](https://github.com/digitallyinduced/ihp)** | Haskell (GHC 9.10) | **89.1** | 16/16 | 70.41 ms | 361 ops/s | 144,224 rows/s | 76.00 MB | 1 line | 10/10 | [`implementations/ihp`](implementations/ihp) |
+| 9 | **[hibernate-orm](https://github.com/hibernate/hibernate-orm)** | Java 21 | **89.1** | 16/16 | 62.66 ms | 256 ops/s | 564,130 rows/s | 15.00 MB | 1 line | 10/10 | [`implementations/hibernate-orm`](implementations/hibernate-orm) |
+| 10 | **[efcore](https://github.com/dotnet/efcore)** | C# / .NET 8 | **89.0** | 16/16 | 68.51 ms | 260 ops/s | 1,391,131 rows/s | 139.80 MB | 1 line | 10/10 | [`implementations/efcore`](implementations/efcore) |
+| 11 | **[orville](https://github.com/flipstone/orville)** | Haskell (GHC 9.10) | **88.9** | 16/16 | 73.71 ms | 247 ops/s | 99,705 rows/s | 38.79 MB | 1 line | 10/10 | [`implementations/orville`](implementations/orville) |
+| 12 | **[gorm](https://github.com/go-gorm/gorm)** | Go 1.23 | **88.9** | 16/16 | 58.50 ms | 256 ops/s | 712,657 rows/s | 25.37 MB | 1 line | 10/10 | [`implementations/gorm`](implementations/gorm) |
+| 13 | **[rel8](https://github.com/circuithub/rel8)** | Haskell (GHC 9.10) | **88.8** | 16/16 | 132.32 ms | 254 ops/s | 122,678 rows/s | 18.75 MB | 1 line | 10/10 | [`implementations/rel8`](implementations/rel8) |
+| 14 | **[persistent](https://github.com/yesodweb/persistent)** | Haskell (GHC 9.10) | **88.7** | 16/16 | 77.55 ms | 251 ops/s | 103,221 rows/s | 21.03 MB | 1 line | 10/10 | [`implementations/persistent`](implementations/persistent) |
+| 15 | **[mikro-orm](https://github.com/mikro-orm/mikro-orm)** | TypeScript (Node 22) | **88.7** | 16/16 | 58.19 ms | 3,302 ops/s | 182,594 rows/s | 239.52 MB | 1 line | 10/10 | [`implementations/mikro-orm`](implementations/mikro-orm) |
+| 16 | **[esqueleto](https://github.com/bitemyapp/esqueleto)** | Haskell (GHC 9.10) | **88.6** | 16/16 | 82.16 ms | 250 ops/s | 85,377 rows/s | 25.22 MB | 2 lines | 10/10 | [`implementations/esqueleto`](implementations/esqueleto) |
+| 17 | **[haskell-opaleye](https://github.com/tomjaguarpaw/haskell-opaleye)** | Haskell (GHC 9.10) | **88.5** | 16/16 | 80.38 ms | 254 ops/s | 101,544 rows/s | 26.54 MB | 2 lines | 10/10 | [`implementations/haskell-opaleye`](implementations/haskell-opaleye) |
+| 18 | **[beam](https://github.com/haskell-beam/beam)** | Haskell (GHC 9.10) | **88.4** | 16/16 | 13.57 ms | 241 ops/s | 113,504 rows/s | 22.39 MB | 6 lines | 10/10 | [`implementations/beam`](implementations/beam) |
+| 19 | **[diesel](https://github.com/diesel-rs/diesel)** | Rust 1.83 | **88.0** | 16/16 | 59.10 ms | 266 ops/s | 1,373,304 rows/s | 33.33 MB | 3 lines | 10/10 | [`implementations/diesel`](implementations/diesel) |
+| 20 | **[typeorm](https://github.com/typeorm/typeorm)** | TypeScript (Node 22) | **87.8** | 16/16 | 55.99 ms | 235 ops/s | 385,422 rows/s | 71.55 MB | 1 line | 10/10 | [`implementations/typeorm`](implementations/typeorm) |
+| 21 | **[rails](https://github.com/rails/rails)** (ActiveRecord) | Ruby 3.3 (YJIT) | **87.5** | 16/16 | 85.34 ms | 247 ops/s | 89,792 rows/s | 150.00 MB | 1 line | 10/10 | [`implementations/rails`](implementations/rails) |
+| 22 | **[sqlalchemy](https://github.com/sqlalchemy/sqlalchemy)** | Python 3.12 (asyncpg) | **87.4** | 16/16 | 72.57 ms | 5,718 ops/s | 279,239 rows/s | 92.50 MB | 1 line | 10/10 | [`implementations/sqlalchemy`](implementations/sqlalchemy) |
+| 23 | **[prisma](https://github.com/prisma/prisma)** | TypeScript (Rust Engine) | **87.2** | 16/16 | 83.54 ms | 264 ops/s | 208,122 rows/s | 36.71 MB | 1 line | 10/10 | [`implementations/prisma`](implementations/prisma) |
+| 24 | **[drizzle-orm](https://github.com/drizzle-team/drizzle-orm)** | TypeScript (Node 22) | **86.8** | 16/16 | 64.45 ms | 242 ops/s | 498,613 rows/s | 184.58 MB | 4 lines | 10/10 | [`implementations/drizzle-orm`](implementations/drizzle-orm) |
+| 25 | **[sea-orm](https://github.com/SeaQL/sea-orm)** | Rust 1.83 (sqlx) | **86.7** | 16/16 | 66.15 ms | 272 ops/s | 1,235,677 rows/s | 34.08 MB | 1 line | 10/10 | [`implementations/sea-orm`](implementations/sea-orm) |
+
+---
+
+## 📂 Implementation Code (Inspect the Queries!)
+
+Every single query (HQ01–HQ16), data model, and reproduction script is included in [`implementations/`](implementations/):
+
+| ORM | Language | Implementation Directory | Primary Query File |
+| :--- | :--- | :--- | :--- |
+| **sqlc** | Go | [`implementations/sqlc`](implementations/sqlc) | `queries.sql` / `db/queries.sql.go` |
+| **hasql** | Haskell | [`implementations/hasql`](implementations/hasql) | `src/Queries.hs` |
+| **Dapper** | C# | [`implementations/dapper`](implementations/dapper) | `Queries.cs` |
+| **jOOQ** | Java | [`implementations/jOOQ`](implementations/jOOQ) | `src/main/java/.../Queries.java` |
+| **ent** | Go | [`implementations/ent`](implementations/ent) | `queries.go` |
+| **ecto** | Elixir | [`implementations/ecto`](implementations/ecto) | `lib/queries.ex` |
+| **squeal** | Haskell | [`implementations/squeal`](implementations/squeal) | `src/Queries.hs` |
+| **ihp** | Haskell | [`implementations/ihp`](implementations/ihp) | `src/Queries.hs` |
+| **hibernate-orm** | Java | [`implementations/hibernate-orm`](implementations/hibernate-orm) | `src/main/java/.../Queries.java` |
+| **efcore** | C# | [`implementations/efcore`](implementations/efcore) | `Queries.cs` |
+| **orville** | Haskell | [`implementations/orville`](implementations/orville) | `src/Queries.hs` |
+| **gorm** | Go | [`implementations/gorm`](implementations/gorm) | `queries.go` |
+| **rel8** | Haskell | [`implementations/rel8`](implementations/rel8) | `src/Queries.hs` |
+| **persistent** | Haskell | [`implementations/persistent`](implementations/persistent) | `src/Queries.hs` |
+| **mikro-orm** | TypeScript | [`implementations/mikro-orm`](implementations/mikro-orm) | `src/queries.ts` |
+| **esqueleto** | Haskell | [`implementations/esqueleto`](implementations/esqueleto) | `src/Queries.hs` |
+| **haskell-opaleye** | Haskell | [`implementations/haskell-opaleye`](implementations/haskell-opaleye) | `src/Queries.hs` |
+| **beam** | Haskell | [`implementations/beam`](implementations/beam) | `src/Queries.hs` |
+| **diesel** | Rust | [`implementations/diesel`](implementations/diesel) | `src/queries.rs` |
+| **typeorm** | TypeScript | [`implementations/typeorm`](implementations/typeorm) | `src/queries.ts` |
+| **rails** | Ruby | [`implementations/rails`](implementations/rails) | `src/queries.rb` |
+| **sqlalchemy** | Python | [`implementations/sqlalchemy`](implementations/sqlalchemy) | `queries.py` |
+| **prisma** | TypeScript | [`implementations/prisma`](implementations/prisma) | `src/queries.ts` |
+| **drizzle-orm** | TypeScript | [`implementations/drizzle-orm`](implementations/drizzle-orm) | `src/queries.ts` |
+| **sea-orm** | Rust | [`implementations/sea-orm`](implementations/sea-orm) | `src/queries.rs` |
 
 ---
 

@@ -1,0 +1,96 @@
+cabal-version:      2.4
+name:               squeal-postgres-air-bench
+version:            1.0.0.0
+synopsis:           Postgres Air Squeal-PostgreSQL Heavyweight Benchmark
+license:            MIT
+build-type:         Simple
+
+library
+  exposed-modules:
+    Schema
+    Models
+    Queries
+  hs-source-dirs:     src
+  default-language:   GHC2021
+  default-extensions:
+    DataKinds
+    DeriveAnyClass
+    DeriveGeneric
+    DerivingStrategies
+    DuplicateRecordFields
+    FlexibleContexts
+    FlexibleInstances
+    GADTs
+    GeneralizedNewtypeDeriving
+    LambdaCase
+    MultiParamTypeClasses
+    OverloadedLabels
+    OverloadedStrings
+    PolyKinds
+    RankNTypes
+    RecordWildCards
+    ScopedTypeVariables
+    StandaloneDeriving
+    TypeApplications
+    TypeFamilies
+    TypeOperators
+    UndecidableInstances
+  build-depends:
+    base >= 4.14 && < 5,
+    squeal-postgresql,
+    bytestring,
+    text,
+    time,
+    aeson,
+    generics-sop,
+    scientific,
+    vector,
+    deepseq,
+    async,
+    mtl
+  ghc-options: -O2 -Wall -Wno-name-shadowing -Wno-unused-do-bind -Wno-unticked-promoted-constructors
+
+executable squeal-air-bench
+  main-is:            Main.hs
+  hs-source-dirs:     app
+  default-language:   GHC2021
+  default-extensions:
+    DataKinds
+    DeriveAnyClass
+    DeriveGeneric
+    DerivingStrategies
+    DuplicateRecordFields
+    FlexibleContexts
+    FlexibleInstances
+    GADTs
+    GeneralizedNewtypeDeriving
+    LambdaCase
+    MultiParamTypeClasses
+    OverloadedLabels
+    OverloadedStrings
+    PolyKinds
+    RankNTypes
+    RecordWildCards
+    ScopedTypeVariables
+    StandaloneDeriving
+    TypeApplications
+    TypeFamilies
+    TypeOperators
+    UndecidableInstances
+  build-depends:
+    base >= 4.14 && < 5,
+    squeal-postgres-air-bench,
+    squeal-postgresql,
+    bytestring,
+    text,
+    time,
+    aeson,
+    generics-sop,
+    scientific,
+    vector,
+    deepseq,
+    async,
+    mtl,
+    directory,
+    filepath
+  ghc-options: -O2 -threaded -rtsopts "-with-rtsopts=-N -T" -Wall -Wno-name-shadowing -Wno-unused-do-bind -Wno-unticked-promoted-constructors

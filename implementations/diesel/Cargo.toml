@@ -1,0 +1,24 @@
+[package]
+name = "diesel-postgres-air-bench"
+version = "0.1.0"
+edition.workspace = true
+publish = false
+
+[dependencies]
+diesel = { path = "../diesel", features = ["postgres", "chrono", "r2d2", "numeric", "64-column-tables", "serde_json"] }
+pq-sys = { workspace = true }
+chrono = { version = "0.4.20", features = ["serde"] }
+bigdecimal = { version = "0.4", features = ["serde"] }
+r2d2 = "0.8"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+libc = "0.2"
+
+
+[[bin]]
+name = "diesel-air-bench"
+path = "src/main.rs"
+
+[lints]
+workspace = true
+

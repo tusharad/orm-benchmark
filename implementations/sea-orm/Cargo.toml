@@ -1,0 +1,20 @@
+[package]
+name = "sea-orm-postgres-air-bench"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+sea-orm = { path = "..", features = ["sqlx-postgres", "runtime-tokio-rustls", "macros", "with-chrono", "with-rust_decimal", "with-json"] }
+tokio = { version = "1", features = ["full"] }
+chrono = { version = "0.4", features = ["serde"] }
+rust_decimal = { version = "1", features = ["serde"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+futures = "0.3"
+async-trait = "0.1"
+libc = "0.2"
+
+[[bin]]
+name = "sea-orm-air-bench"
+path = "src/main.rs"

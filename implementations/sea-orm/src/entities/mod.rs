@@ -1,0 +1,12 @@
+pub mod account;
+pub mod aircraft;
+pub mod airport;
+pub mod boarding_pass;
+pub mod booking;
+pub mod booking_leg;
+pub mod flight;
+pub mod flight_seat_inventory;
+pub mod flight_status_update;
+pub mod frequent_flyer;
+pub mod passenger;
+pub mod phone;

@@ -1,0 +1,19 @@
+{
+  "name": "drizzle-air-bench",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "bench": "node --max-old-space-size=4096 --import tsx src/bench.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.45.4",
+    "pg": "^8.23.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/pg": "^8.23.1",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
