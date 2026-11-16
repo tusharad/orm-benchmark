@@ -7,7 +7,7 @@
       "p95_ms": 75.644,
       "p99_ms": 75.644,
       "rows_per_sec": 144223.56,
-      "status": "✅"
+      "status": "\u2705"
     },
     "HQ02": {
       "loc": 35,
@@ -16,7 +16,7 @@
       "p95_ms": 54.033,
       "p99_ms": 54.033,
       "rows_per_sec": 96504.98,
-      "status": "✅"
+      "status": "\u2705"
     },
     "HQ03": {
       "loc": 20,
@@ -24,7 +24,7 @@
       "p50_ms": 4.905,
       "p95_ms": 4.986,
       "p99_ms": 4.986,
-      "status": "✅"
+      "status": "\u2705"
     },
     "HQ04": {
       "loc": 30,
@@ -32,7 +32,7 @@
       "p50_ms": 67.293,
       "p95_ms": 74.596,
       "p99_ms": 74.596,
-      "status": "✅"
+      "status": "\u2705"
     },
     "HQ05": {
       "loc": 35,
@@ -40,7 +40,7 @@
       "p50_ms": 364.344,
       "p95_ms": 369.944,
       "p99_ms": 369.944,
-      "status": "✅"
+      "status": "\u2705"
     },
     "HQ06": {
       "loc": 45,
@@ -48,7 +48,7 @@
       "p50_ms": 87.114,
       "p95_ms": 87.316,
       "p99_ms": 87.316,
-      "status": "✅"
+      "status": "\u2705"
     },
     "HQ07": {
       "loc": 35,
@@ -56,7 +56,7 @@
       "p50_ms": 103.568,
       "p95_ms": 104.773,
       "p99_ms": 104.773,
-      "status": "✅"
+      "status": "\u2705"
     },
     "HQ08": {
       "loc": 45,
@@ -64,7 +64,7 @@
       "p50_ms": 303.254,
       "p95_ms": 304.033,
       "p99_ms": 304.033,
-      "status": "✅"
+      "status": "\u2705"
     },
     "HQ09": {
       "loc": 40,
@@ -72,7 +72,7 @@
       "p50_ms": 15.756,
       "p95_ms": 16.726,
       "p99_ms": 16.726,
-      "status": "✅"
+      "status": "\u2705"
     },
     "HQ10": {
       "loc": 20,
@@ -80,7 +80,7 @@
       "p50_ms": 8.885,
       "p95_ms": 9.017,
       "p99_ms": 9.017,
-      "status": "✅"
+      "status": "\u2705"
     },
     "HQ11": {
       "loc": 35,
@@ -88,15 +88,15 @@
       "p50_ms": 0.532,
       "p95_ms": 0.575,
       "p99_ms": 0.575,
-      "status": "✅"
+      "status": "\u2705"
     },
     "HQ12": {
       "loc": 15,
       "notes": "High-volume 2,500 record batch upsert ON CONFLICT",
-      "p50_ms": 17.760,
-      "p95_ms": 17.760,
-      "p99_ms": 17.760,
-      "status": "✅"
+      "p50_ms": 17.76,
+      "p95_ms": 17.76,
+      "p99_ms": 17.76,
+      "status": "\u2705"
     },
     "HQ13": {
       "loc": 18,
@@ -104,7 +104,7 @@
       "p50_ms": 2.565,
       "p95_ms": 2.717,
       "p99_ms": 2.717,
-      "status": "✅"
+      "status": "\u2705"
     },
     "HQ14": {
       "loc": 25,
@@ -112,24 +112,24 @@
       "p50_ms": 0.441,
       "p95_ms": 0.538,
       "p99_ms": 0.538,
-      "rows_per_sec": 9564.80,
-      "status": "✅"
+      "rows_per_sec": 9564.8,
+      "status": "\u2705"
     },
     "HQ15": {
       "loc": 25,
       "notes": "Distributed financial points transfer in transaction",
-      "p50_ms": 0.710,
+      "p50_ms": 0.71,
       "p95_ms": 0.751,
       "p99_ms": 0.751,
-      "status": "✅"
+      "status": "\u2705"
     },
     "HQ16": {
       "loc": 30,
       "notes": "Multi-modal hybrid pgvector + BM25 RRF search",
-      "p50_ms": 2.940,
+      "p50_ms": 2.94,
       "p95_ms": 3.189,
       "p99_ms": 3.189,
-      "status": "✅"
+      "status": "\u2705"
     }
   },
   "concurrency_benchmarks": {
@@ -155,16 +155,46 @@
     }
   },
   "deliberate_mistakes": {
-    "E01": { "line_count": 9, "zero_leakage": true },
-    "E02": { "line_count": 9, "zero_leakage": true },
-    "E03": { "line_count": 25, "zero_leakage": true },
-    "E04": { "line_count": 13, "zero_leakage": true },
-    "E05": { "line_count": 12, "zero_leakage": true },
-    "E06": { "line_count": 26, "zero_leakage": true },
-    "E07": { "line_count": 8, "zero_leakage": true },
-    "E08": { "line_count": 8, "zero_leakage": true },
-    "E09": { "line_count": 12, "zero_leakage": true },
-    "E10": { "line_count": 2, "zero_leakage": true }
+    "E01": {
+      "line_count": 9,
+      "zero_leakage": true
+    },
+    "E02": {
+      "line_count": 9,
+      "zero_leakage": true
+    },
+    "E03": {
+      "line_count": 25,
+      "zero_leakage": true
+    },
+    "E04": {
+      "line_count": 13,
+      "zero_leakage": true
+    },
+    "E05": {
+      "line_count": 12,
+      "zero_leakage": true
+    },
+    "E06": {
+      "line_count": 26,
+      "zero_leakage": true
+    },
+    "E07": {
+      "line_count": 8,
+      "zero_leakage": true
+    },
+    "E08": {
+      "line_count": 8,
+      "zero_leakage": true
+    },
+    "E09": {
+      "line_count": 12,
+      "zero_leakage": true
+    },
+    "E10": {
+      "line_count": 2,
+      "zero_leakage": true
+    }
   },
   "deliberate_mistakes_log": "E01_TypeMismatch: 9 lines | PASS (Zero Leakage)\nE02_JoinKeyMismatch: 9 lines | PASS (Zero Leakage)\nE03_MissingGroupBy: 25 lines | PASS (Zero Leakage)\nE04_IoEscape: 13 lines | PASS (Zero Leakage)\nE05_NullabilityViolation: 12 lines | PASS (Zero Leakage)\nE06_UnknownColumn: 26 lines | PASS (Zero Leakage)\nE07_WindowInWhere: 8 lines | PASS (Zero Leakage)\nE08_DanglingJoin: 8 lines | PASS (Zero Leakage)\nE09_MutatePrimaryKey: 12 lines | PASS (Zero Leakage)\nE10_ScopeLeak: 2 lines | PASS (Zero Leakage)",
   "ergonomics": {
@@ -201,15 +231,15 @@
     "total_allocated_mb": 1850.0
   },
   "summary": {
-    "avg_p95_ms": 70.41,
-    "blast_radius_lines": 1,
-    "hydration_rows_sec": 144223.56,
-    "max_heap_mb": 76.0,
-    "mistake_score": 10,
-    "overall_score": 89.1,
+    "overall_score": 68.2,
     "passed_queries": 16,
-    "peak_rps": 361.11,
-    "total_queries": 16
+    "total_queries": 16,
+    "avg_p95_ms": 70.41,
+    "peak_rps": 361.1,
+    "hydration_rows_sec": 144224.0,
+    "max_heap_mb": 76.0,
+    "blast_radius_lines": 1,
+    "mistake_score": 10
   },
   "timestamp": "2026-11-16 00:29:28 UTC",
   "version": "1.6.0"

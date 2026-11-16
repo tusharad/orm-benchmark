@@ -5,11 +5,11 @@
   "path": "../sqlalchemy/sqlalchemy-postgres-air-bench",
   "timestamp": "2026-11-15T16:52:49.594398+00:00",
   "summary": {
-    "overall_score": 87.4,
+    "overall_score": 74.1,
     "passed_queries": 16,
     "total_queries": 16,
     "avg_p95_ms": 72.57,
-    "peak_rps": 5718.291867773058,
+    "peak_rps": 5718.3,
     "hydration_rows_sec": 279239.0,
     "max_heap_mb": 92.5,
     "blast_radius_lines": 1,

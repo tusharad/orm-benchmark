@@ -188,33 +188,45 @@ class MetricsCollector:
         
         # Hydration speed
         hq01_rate = self.data.get("hydration_benchmarks", {}).get("HQ01", {}).get("rows_per_sec", 0)
+        if not hq01_rate:
+            hq01_rate = self.data.get("hydration_benchmarks", {}).get("hq01_10k_entity_deserialization", {}).get("rows_per_sec", 0)
         
-        # Overall score formula out of 100:
-        # 35% Heavy query completeness (16 queries)
-        # 25% Latency & execution throughput
-        # 15% Deserialization & memory efficiency
-        # 15% Compiler UX (The Deliberate Mistakes)
-        # 10% Ergonomics & Operator conciseness
-        score = (passed_queries / 16.0) * 35.0 + (mistake_score / 10.0) * 15.0
+        peak_rps = self.data.get("performance", {}).get("peak_rps") or 250.0
+
+        # Deterministic Scoring Formula (100 Points Total):
+        # 1. 30% Canonical Query Completeness (16 queries)
+        query_score = (passed_queries / 16.0) * 30.0
         
+        # 2. 25% Heavyweight Execution Latency (Scaled from 50ms = 25 pts down to 200ms = 0 pts)
+        latency_score = 0.0
         if avg_p95:
-            latency_score = max(0.0, 25.0 - (avg_p95 / 20.0))
-            score += latency_score
+            latency_score = max(0.0, min(25.0, 25.0 * (1.0 - (avg_p95 - 50.0) / 150.0)))
             
-        if hq01_rate > 0:
-            hydration_score = min(15.0, (hq01_rate / 50000.0) * 15.0)
-            score += hydration_score
+        # 3. 20% Massive Hydration Throughput (Scaled linearly up to 1,500,000 rows/sec)
+        hydration_score = min(20.0, (hq01_rate / 1500000.0) * 20.0) if hq01_rate else 0.0
             
-        if self.data["ergonomics"].get("unique_operators") is not None:
-            op_penalty = max(0.0, 10.0 - (self.data["ergonomics"]["unique_operators"] * 1.5))
-            score += op_penalty
+        # 4. 10% Concurrency Scaling (Logarithmic scaling between 100 and 50,000 RPS)
+        import math
+        if peak_rps > 100:
+            concurrency_score = min(10.0, (math.log10(peak_rps) - 2.0) / (math.log10(50000) - 2.0) * 10.0)
+        else:
+            concurrency_score = 1.0
+
+        # 5. 10% Compiler UX & Safety (Deliberate Mistakes zero-leakage score)
+        compiler_ux_score = (mistake_score / 10.0) * 10.0
+
+        # 6. 5% Ergonomics & Operator Simplicity (Penalty for exotic DSL operators)
+        unique_ops = self.data.get("ergonomics", {}).get("unique_operators", 4)
+        ergo_score = max(1.0, 5.0 - (unique_ops * 0.4))
+            
+        score = query_score + latency_score + hydration_score + concurrency_score + compiler_ux_score + ergo_score
             
         self.data["summary"] = {
             "overall_score": round(score, 1),
             "passed_queries": passed_queries,
             "total_queries": 16,
             "avg_p95_ms": round(avg_p95, 2) if avg_p95 else None,
-            "peak_rps": self.data["performance"].get("peak_rps"),
+            "peak_rps": round(peak_rps, 1),
             "hydration_rows_sec": round(hq01_rate, 0) if hq01_rate else None,
             "max_heap_mb": self.data["performance"].get("max_heap_mb"),
             "blast_radius_lines": self.data["ergonomics"].get("blast_radius_lines"),

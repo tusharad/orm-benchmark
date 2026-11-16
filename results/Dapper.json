@@ -26,7 +26,7 @@
     "HQ03": {
       "status": "\u2705",
       "loc": 44,
-      "notes": "4-level deep graph assembly (0 N\u002B1)",
+      "notes": "4-level deep graph assembly (0 N+1)",
       "p50_ms": 13.037921,
       "p95_ms": 14.022297,
       "p99_ms": 14.022297
@@ -58,7 +58,7 @@
     "HQ07": {
       "status": "\u2705",
       "loc": 32,
-      "notes": "Correlated subqueries in SELECT \u0026 WHERE",
+      "notes": "Correlated subqueries in SELECT & WHERE",
       "p50_ms": 104.636492,
       "p95_ms": 105.239159,
       "p99_ms": 105.239159
@@ -131,7 +131,7 @@
     "HQ16": {
       "status": "\u2705",
       "loc": 34,
-      "notes": "Hybrid 384-dim HNSW \u002B BM25 RRF search",
+      "notes": "Hybrid 384-dim HNSW + BM25 RRF search",
       "p50_ms": 2.961751,
       "p95_ms": 3.213334,
       "p99_ms": 3.213334
@@ -232,12 +232,12 @@
     "blast_radius_files": 1
   },
   "summary": {
-    "overall_score": 89.5,
+    "overall_score": 84.1,
     "passed_queries": 16,
     "total_queries": 16,
     "avg_p95_ms": 62.67,
-    "hydration_rows_sec": 1279038,
-    "peak_rps": 263.63,
+    "peak_rps": 263.6,
+    "hydration_rows_sec": 1279038.0,
     "max_heap_mb": 87.27,
     "blast_radius_lines": 1,
     "mistake_score": 10

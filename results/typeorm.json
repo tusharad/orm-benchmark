@@ -5,19 +5,19 @@
   "timestamp": "2026-11-15T17:39:15.786Z",
   "path": "../typeorm/bench",
   "summary": {
-    "overall_score": 87.8,
+    "overall_score": 72.3,
     "passed_queries": 16,
     "total_queries": 16,
     "avg_p95_ms": 55.99,
-    "peak_rps": 234.93,
-    "hydration_rows_sec": 385422,
+    "peak_rps": 234.9,
+    "hydration_rows_sec": 385422.0,
     "max_heap_mb": 71.55,
     "blast_radius_lines": 1,
     "mistake_score": 10
   },
   "canonical_queries": {
     "HQ01": {
-      "status": "✅",
+      "status": "\u2705",
       "p50_ms": 25.945583999999997,
       "p95_ms": 41.686125000000004,
       "p99_ms": 41.686125000000004,
@@ -26,7 +26,7 @@
       "notes": "10k flight entities hydrated"
     },
     "HQ02": {
-      "status": "✅",
+      "status": "\u2705",
       "p50_ms": 8.156749999999988,
       "p95_ms": 9.177040999999917,
       "p99_ms": 9.177040999999917,
@@ -35,7 +35,7 @@
       "notes": "5k 4-table joined records"
     },
     "HQ03": {
-      "status": "✅",
+      "status": "\u2705",
       "p50_ms": 3.579833000000008,
       "p95_ms": 4.895083,
       "p99_ms": 4.895083,
@@ -43,7 +43,7 @@
       "notes": "4-level deep graph assembly (0 N+1)"
     },
     "HQ04": {
-      "status": "✅",
+      "status": "\u2705",
       "p50_ms": 1.2946249999999964,
       "p95_ms": 2.481292000000053,
       "p99_ms": 2.481292000000053,
@@ -51,7 +51,7 @@
       "notes": "Account graph assembly"
     },
     "HQ05": {
-      "status": "✅",
+      "status": "\u2705",
       "p50_ms": 362.5804170000001,
       "p95_ms": 364.4260409999997,
       "p99_ms": 364.4260409999997,
@@ -59,7 +59,7 @@
       "notes": "5-table analytical ledger over 410k rows"
     },
     "HQ06": {
-      "status": "✅",
+      "status": "\u2705",
       "p50_ms": 87.54870800000026,
       "p95_ms": 96.87825000000021,
       "p99_ms": 96.87825000000021,
@@ -67,7 +67,7 @@
       "notes": "3 chained CTEs hub centrality over 112k flights"
     },
     "HQ07": {
-      "status": "✅",
+      "status": "\u2705",
       "p50_ms": 0.4722500000002583,
       "p95_ms": 0.5498749999997017,
       "p99_ms": 0.5498749999997017,
@@ -75,7 +75,7 @@
       "notes": "Correlated subqueries in SELECT & WHERE"
     },
     "HQ08": {
-      "status": "✅",
+      "status": "\u2705",
       "p50_ms": 306.10433399999965,
       "p95_ms": 326.5447089999998,
       "p99_ms": 326.5447089999998,
@@ -83,7 +83,7 @@
       "notes": "Recursive 1- to 3-hop itinerary graph traversal"
     },
     "HQ09": {
-      "status": "✅",
+      "status": "\u2705",
       "p50_ms": 2.020917000000736,
       "p95_ms": 2.341374999999971,
       "p99_ms": 2.341374999999971,
@@ -91,7 +91,7 @@
       "notes": "4 simultaneous window functions with framing"
     },
     "HQ10": {
-      "status": "✅",
+      "status": "\u2705",
       "p50_ms": 12.799042000000554,
       "p95_ms": 14.049708000000464,
       "p99_ms": 14.049708000000464,
@@ -99,7 +99,7 @@
       "notes": "Composite keyset cursor pagination"
     },
     "HQ11": {
-      "status": "✅",
+      "status": "\u2705",
       "p50_ms": 0.5067499999995562,
       "p95_ms": 0.658292000000074,
       "p99_ms": 0.658292000000074,
@@ -107,7 +107,7 @@
       "notes": "Dynamic faceted search with 10 predicates"
     },
     "HQ12": {
-      "status": "✅",
+      "status": "\u2705",
       "p50_ms": 23.376333999999588,
       "p95_ms": 24.03979199999958,
       "p99_ms": 24.03979199999958,
@@ -115,7 +115,7 @@
       "notes": "TypeORM 2,500 rows batch upsert"
     },
     "HQ13": {
-      "status": "✅",
+      "status": "\u2705",
       "p50_ms": 0.2723329999998896,
       "p95_ms": 0.40133400000013353,
       "p99_ms": 0.40133400000013353,
@@ -123,7 +123,7 @@
       "notes": "Optimistic version increment"
     },
     "HQ14": {
-      "status": "✅",
+      "status": "\u2705",
       "p50_ms": 0.5566250000001673,
       "p95_ms": 0.6190000000005966,
       "p99_ms": 0.6190000000005966,
@@ -132,7 +132,7 @@
       "notes": "Concurrent seat reservation with pessimistic_write lock"
     },
     "HQ15": {
-      "status": "✅",
+      "status": "\u2705",
       "p50_ms": 0.9981250000000728,
       "p95_ms": 1.1962910000002012,
       "p99_ms": 1.1962910000002012,
@@ -140,7 +140,7 @@
       "notes": "Serializable points transfer with 40001 retry"
     },
     "HQ16": {
-      "status": "✅",
+      "status": "\u2705",
       "p50_ms": 5.751500000000306,
       "p95_ms": 5.874292000000423,
       "p99_ms": 5.874292000000423,

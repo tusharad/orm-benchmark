@@ -1,1 +1,244 @@
-{"canonical_queries":{"HQ01":{"loc":6,"notes":"10k flight entities hydrated","p50_ms":101.218,"p95_ms":105.293,"p99_ms":105.293,"rows_per_sec":101543.76993431133,"status":"✅"},"HQ02":{"loc":10,"notes":"5k 4-table joined records","p50_ms":139.936,"p95_ms":146.998,"p99_ms":146.998,"rows_per_sec":35820.801425954465,"status":"✅"},"HQ03":{"loc":14,"notes":"4-level deep graph assembly (0 N+1)","p50_ms":63.504,"p95_ms":67.035,"p99_ms":67.035,"status":"✅"},"HQ04":{"loc":18,"notes":"Account graph with optional sub-entities","p50_ms":11.127,"p95_ms":11.861,"p99_ms":11.861,"status":"✅"},"HQ05":{"loc":20,"notes":"5-table analytical ledger over 410k rows","p50_ms":363.871,"p95_ms":380.105,"p99_ms":380.105,"status":"✅"},"HQ06":{"loc":45,"notes":"3 chained CTEs hub centrality over 112k flights","p50_ms":86.499,"p95_ms":87.214,"p99_ms":87.214,"status":"✅"},"HQ07":{"loc":28,"notes":"Correlated subqueries in SELECT & WHERE","p50_ms":102.502,"p95_ms":105.672,"p99_ms":105.672,"status":"✅"},"HQ08":{"loc":40,"notes":"Recursive 1- to 3-hop itinerary graph traversal","p50_ms":300.697,"p95_ms":313.202,"p99_ms":313.202,"status":"✅"},"HQ09":{"loc":36,"notes":"4 simultaneous window functions with framing","p50_ms":16.357,"p95_ms":16.724,"p99_ms":16.724,"status":"✅"},"HQ10":{"loc":8,"notes":"Composite keyset cursor pagination","p50_ms":12.066,"p95_ms":12.774,"p99_ms":12.774,"status":"✅"},"HQ11":{"loc":34,"notes":"Dynamic faceted search with 10 predicates","p50_ms":9.134,"p95_ms":9.454,"p99_ms":9.454,"status":"✅"},"HQ12":{"loc":12,"notes":"High-volume 2,500 rows batch upsert","p50_ms":23.587,"p95_ms":24.168,"p99_ms":24.168,"status":"✅"},"HQ13":{"loc":8,"notes":"Optimistic version increment","p50_ms":0.176,"p95_ms":0.203,"p99_ms":0.203,"status":"✅"},"HQ14":{"loc":16,"notes":"Concurrent seat reservation with FOR UPDATE","p50_ms":0.774,"p95_ms":0.998,"p99_ms":0.998,"status":"✅"},"HQ15":{"loc":20,"notes":"Serializable points transfer with 40001 retry","p50_ms":0.816,"p95_ms":0.943,"p99_ms":0.943,"status":"✅"},"HQ16":{"loc":32,"notes":"Hybrid 384-dim HNSW + BM25 RRF search","p50_ms":3.074,"p95_ms":3.401,"p99_ms":3.401,"status":"✅"}},"concurrency_benchmarks":{"C1":{"concurrency":1,"p99_ms":12.774,"rps":75.77330445865279},"C10":{"concurrency":10,"p99_ms":12.774,"rps":265.0575903879515},"C100":{"concurrency":100,"p99_ms":12.774,"rps":250.62191829023723},"C50":{"concurrency":50,"p99_ms":12.774,"rps":254.43492801272583}},"deliberate_mistakes":{"E01":{"line_count":7,"zero_leakage":true},"E02":{"line_count":7,"zero_leakage":true},"E03":{"line_count":6,"zero_leakage":true},"E04":{"line_count":6,"zero_leakage":true},"E05":{"line_count":7,"zero_leakage":true},"E06":{"line_count":4,"zero_leakage":true},"E07":{"line_count":6,"zero_leakage":true},"E08":{"line_count":5,"zero_leakage":true},"E09":{"line_count":8,"zero_leakage":true},"E10":{"line_count":5,"zero_leakage":true}},"ergonomics":{"blast_radius_files":1,"blast_radius_lines":2,"loc":280,"operator_score":8.5,"tokens":1780,"unique_operators":7},"hydration_benchmarks":{"HQ01":{"duration_ms":98.47970000000001,"rows_per_sec":101543.76993431133,"total_fields":120000,"total_rows":10000},"HQ02":{"duration_ms":139.5837,"rows_per_sec":35820.801425954465,"total_fields":85000,"total_rows":5000}},"language":"Haskell","orm":"haskell-opaleye","path":"../haskell-opaleye/opaleye-postgres-air-bench","performance":{"gc_major_collections":1590,"gc_minor_collections":3181,"gc_pause_total_ms":798.339,"max_heap_mb":26.536895751953125,"peak_rps":254.43492801272583,"total_allocated_mb":15233.182327270508},"summary":{"avg_p95_ms":80.37781249999999,"blast_radius_lines":2,"hydration_rows_sec":101543.76993431133,"max_heap_mb":26.536895751953125,"mistake_score":10,"overall_score":88.5,"passed_queries":16,"peak_rps":254.43492801272583,"total_queries":16},"timestamp":"2026-11-15T00:00:00Z","version":"0.10.8.0"}
+{
+  "canonical_queries": {
+    "HQ01": {
+      "loc": 6,
+      "notes": "10k flight entities hydrated",
+      "p50_ms": 101.218,
+      "p95_ms": 105.293,
+      "p99_ms": 105.293,
+      "rows_per_sec": 101543.76993431133,
+      "status": "\u2705"
+    },
+    "HQ02": {
+      "loc": 10,
+      "notes": "5k 4-table joined records",
+      "p50_ms": 139.936,
+      "p95_ms": 146.998,
+      "p99_ms": 146.998,
+      "rows_per_sec": 35820.801425954465,
+      "status": "\u2705"
+    },
+    "HQ03": {
+      "loc": 14,
+      "notes": "4-level deep graph assembly (0 N+1)",
+      "p50_ms": 63.504,
+      "p95_ms": 67.035,
+      "p99_ms": 67.035,
+      "status": "\u2705"
+    },
+    "HQ04": {
+      "loc": 18,
+      "notes": "Account graph with optional sub-entities",
+      "p50_ms": 11.127,
+      "p95_ms": 11.861,
+      "p99_ms": 11.861,
+      "status": "\u2705"
+    },
+    "HQ05": {
+      "loc": 20,
+      "notes": "5-table analytical ledger over 410k rows",
+      "p50_ms": 363.871,
+      "p95_ms": 380.105,
+      "p99_ms": 380.105,
+      "status": "\u2705"
+    },
+    "HQ06": {
+      "loc": 45,
+      "notes": "3 chained CTEs hub centrality over 112k flights",
+      "p50_ms": 86.499,
+      "p95_ms": 87.214,
+      "p99_ms": 87.214,
+      "status": "\u2705"
+    },
+    "HQ07": {
+      "loc": 28,
+      "notes": "Correlated subqueries in SELECT & WHERE",
+      "p50_ms": 102.502,
+      "p95_ms": 105.672,
+      "p99_ms": 105.672,
+      "status": "\u2705"
+    },
+    "HQ08": {
+      "loc": 40,
+      "notes": "Recursive 1- to 3-hop itinerary graph traversal",
+      "p50_ms": 300.697,
+      "p95_ms": 313.202,
+      "p99_ms": 313.202,
+      "status": "\u2705"
+    },
+    "HQ09": {
+      "loc": 36,
+      "notes": "4 simultaneous window functions with framing",
+      "p50_ms": 16.357,
+      "p95_ms": 16.724,
+      "p99_ms": 16.724,
+      "status": "\u2705"
+    },
+    "HQ10": {
+      "loc": 8,
+      "notes": "Composite keyset cursor pagination",
+      "p50_ms": 12.066,
+      "p95_ms": 12.774,
+      "p99_ms": 12.774,
+      "status": "\u2705"
+    },
+    "HQ11": {
+      "loc": 34,
+      "notes": "Dynamic faceted search with 10 predicates",
+      "p50_ms": 9.134,
+      "p95_ms": 9.454,
+      "p99_ms": 9.454,
+      "status": "\u2705"
+    },
+    "HQ12": {
+      "loc": 12,
+      "notes": "High-volume 2,500 rows batch upsert",
+      "p50_ms": 23.587,
+      "p95_ms": 24.168,
+      "p99_ms": 24.168,
+      "status": "\u2705"
+    },
+    "HQ13": {
+      "loc": 8,
+      "notes": "Optimistic version increment",
+      "p50_ms": 0.176,
+      "p95_ms": 0.203,
+      "p99_ms": 0.203,
+      "status": "\u2705"
+    },
+    "HQ14": {
+      "loc": 16,
+      "notes": "Concurrent seat reservation with FOR UPDATE",
+      "p50_ms": 0.774,
+      "p95_ms": 0.998,
+      "p99_ms": 0.998,
+      "status": "\u2705"
+    },
+    "HQ15": {
+      "loc": 20,
+      "notes": "Serializable points transfer with 40001 retry",
+      "p50_ms": 0.816,
+      "p95_ms": 0.943,
+      "p99_ms": 0.943,
+      "status": "\u2705"
+    },
+    "HQ16": {
+      "loc": 32,
+      "notes": "Hybrid 384-dim HNSW + BM25 RRF search",
+      "p50_ms": 3.074,
+      "p95_ms": 3.401,
+      "p99_ms": 3.401,
+      "status": "\u2705"
+    }
+  },
+  "concurrency_benchmarks": {
+    "C1": {
+      "concurrency": 1,
+      "p99_ms": 12.774,
+      "rps": 75.77330445865279
+    },
+    "C10": {
+      "concurrency": 10,
+      "p99_ms": 12.774,
+      "rps": 265.0575903879515
+    },
+    "C100": {
+      "concurrency": 100,
+      "p99_ms": 12.774,
+      "rps": 250.62191829023723
+    },
+    "C50": {
+      "concurrency": 50,
+      "p99_ms": 12.774,
+      "rps": 254.43492801272583
+    }
+  },
+  "deliberate_mistakes": {
+    "E01": {
+      "line_count": 7,
+      "zero_leakage": true
+    },
+    "E02": {
+      "line_count": 7,
+      "zero_leakage": true
+    },
+    "E03": {
+      "line_count": 6,
+      "zero_leakage": true
+    },
+    "E04": {
+      "line_count": 6,
+      "zero_leakage": true
+    },
+    "E05": {
+      "line_count": 7,
+      "zero_leakage": true
+    },
+    "E06": {
+      "line_count": 4,
+      "zero_leakage": true
+    },
+    "E07": {
+      "line_count": 6,
+      "zero_leakage": true
+    },
+    "E08": {
+      "line_count": 5,
+      "zero_leakage": true
+    },
+    "E09": {
+      "line_count": 8,
+      "zero_leakage": true
+    },
+    "E10": {
+      "line_count": 5,
+      "zero_leakage": true
+    }
+  },
+  "ergonomics": {
+    "blast_radius_files": 1,
+    "blast_radius_lines": 2,
+    "loc": 280,
+    "operator_score": 8.5,
+    "tokens": 1780,
+    "unique_operators": 7
+  },
+  "hydration_benchmarks": {
+    "HQ01": {
+      "duration_ms": 98.47970000000001,
+      "rows_per_sec": 101543.76993431133,
+      "total_fields": 120000,
+      "total_rows": 10000
+    },
+    "HQ02": {
+      "duration_ms": 139.5837,
+      "rows_per_sec": 35820.801425954465,
+      "total_fields": 85000,
+      "total_rows": 5000
+    }
+  },
+  "language": "Haskell",
+  "orm": "haskell-opaleye",
+  "path": "../haskell-opaleye/opaleye-postgres-air-bench",
+  "performance": {
+    "gc_major_collections": 1590,
+    "gc_minor_collections": 3181,
+    "gc_pause_total_ms": 798.339,
+    "max_heap_mb": 26.536895751953125,
+    "peak_rps": 254.43492801272583,
+    "total_allocated_mb": 15233.182327270508
+  },
+  "summary": {
+    "overall_score": 65.0,
+    "passed_queries": 16,
+    "total_queries": 16,
+    "avg_p95_ms": 80.38,
+    "peak_rps": 254.4,
+    "hydration_rows_sec": 101544.0,
+    "max_heap_mb": 26.536895751953125,
+    "blast_radius_lines": 2,
+    "mistake_score": 10
+  },
+  "timestamp": "2026-11-15T00:00:00Z",
+  "version": "0.10.8.0"
+}

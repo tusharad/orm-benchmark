@@ -6,7 +6,7 @@
   "path": "../gorm/bench",
   "canonical_queries": {
     "HQ01": {
-      "status": "✅",
+      "status": "\u2705",
       "loc": 6,
       "notes": "10k flight entities hydrated",
       "p50_ms": 14.38,
@@ -15,7 +15,7 @@
       "rows_per_sec": 712656.7844925884
     },
     "HQ02": {
-      "status": "✅",
+      "status": "\u2705",
       "loc": 14,
       "notes": "5k 4-table joined records",
       "p50_ms": 10.98,
@@ -24,7 +24,7 @@
       "rows_per_sec": 481556.3902532987
     },
     "HQ03": {
-      "status": "✅",
+      "status": "\u2705",
       "loc": 11,
       "notes": "4-level deep graph assembly (0 N+1)",
       "p50_ms": 4.36,
@@ -32,7 +32,7 @@
       "p99_ms": 4.64
     },
     "HQ04": {
-      "status": "✅",
+      "status": "\u2705",
       "loc": 11,
       "notes": "Account graph with optional sub-entities",
       "p50_ms": 2.55,
@@ -40,7 +40,7 @@
       "p99_ms": 2.67
     },
     "HQ05": {
-      "status": "✅",
+      "status": "\u2705",
       "loc": 18,
       "notes": "5-table analytical ledger over 410k rows",
       "p50_ms": 345.93,
@@ -48,7 +48,7 @@
       "p99_ms": 373.01
     },
     "HQ06": {
-      "status": "✅",
+      "status": "\u2705",
       "loc": 50,
       "notes": "3 chained CTEs hub centrality over 112k flights",
       "p50_ms": 82.54,
@@ -56,15 +56,15 @@
       "p99_ms": 87.63
     },
     "HQ07": {
-      "status": "✅",
+      "status": "\u2705",
       "loc": 36,
-      "notes": "Correlated subqueries in SELECT \u0026 WHERE",
+      "notes": "Correlated subqueries in SELECT & WHERE",
       "p50_ms": 99.07,
       "p95_ms": 99.41,
       "p99_ms": 99.41
     },
     "HQ08": {
-      "status": "✅",
+      "status": "\u2705",
       "loc": 48,
       "notes": "Recursive 1- to 3-hop itinerary graph traversal",
       "p50_ms": 299.49,
@@ -72,7 +72,7 @@
       "p99_ms": 304.38
     },
     "HQ09": {
-      "status": "✅",
+      "status": "\u2705",
       "loc": 42,
       "notes": "4 simultaneous window functions with framing",
       "p50_ms": 5.35,
@@ -80,7 +80,7 @@
       "p99_ms": 5.47
     },
     "HQ10": {
-      "status": "✅",
+      "status": "\u2705",
       "loc": 12,
       "notes": "Composite keyset cursor pagination",
       "p50_ms": 12.58,
@@ -88,7 +88,7 @@
       "p99_ms": 13.24
     },
     "HQ11": {
-      "status": "✅",
+      "status": "\u2705",
       "loc": 52,
       "notes": "Dynamic faceted search with 10 predicates",
       "p50_ms": 0.29,
@@ -96,7 +96,7 @@
       "p99_ms": 0.32
     },
     "HQ12": {
-      "status": "✅",
+      "status": "\u2705",
       "loc": 27,
       "notes": "High-volume 2,500 rows batch upsert",
       "p50_ms": 7.91,
@@ -104,7 +104,7 @@
       "p99_ms": 11.48
     },
     "HQ13": {
-      "status": "✅",
+      "status": "\u2705",
       "loc": 23,
       "notes": "Optimistic version increment",
       "p50_ms": 2.65,
@@ -112,7 +112,7 @@
       "p99_ms": 2.81
     },
     "HQ14": {
-      "status": "✅",
+      "status": "\u2705",
       "loc": 36,
       "notes": "Concurrent seat reservation with FOR UPDATE",
       "p50_ms": 0.73,
@@ -121,7 +121,7 @@
       "rows_per_sec": 3563.2783357950834
     },
     "HQ15": {
-      "status": "✅",
+      "status": "\u2705",
       "loc": 42,
       "notes": "Serializable points transfer with 40001 retry",
       "p50_ms": 0.65,
@@ -129,7 +129,7 @@
       "p99_ms": 0.73
     },
     "HQ16": {
-      "status": "✅",
+      "status": "\u2705",
       "loc": 35,
       "notes": "Hybrid 384-dim HNSW + BM25 RRF search",
       "p50_ms": 2.8,
@@ -232,12 +232,12 @@
     "blast_radius_files": 1
   },
   "summary": {
-    "overall_score": 88.9,
+    "overall_score": 77.2,
     "passed_queries": 16,
     "total_queries": 16,
     "avg_p95_ms": 58.5,
+    "peak_rps": 256.1,
     "hydration_rows_sec": 712657,
-    "peak_rps": 256.05,
     "max_heap_mb": 25.37,
     "blast_radius_lines": 1,
     "mistake_score": 10
