@@ -157,6 +157,11 @@ Every ORM implements the exact same 16 real-world queries:
 
 Full specifications and reference PostgreSQL queries are documented in [BENCHMARK_SPEC.md](file:///Users/tusharadhatrao/work/github_repo/orms/bench/BENCHMARK_SPEC.md).
 
+> [!NOTE]
+> **Benchmark Methodology: ORM Runtime Overhead vs. Database Pushdown & Escape Hatches**  
+> - **ORM-Dominated Stress Tests (HQ01–HQ04, HQ10, HQ11, HQ13–HQ15)**: Execution time is dominated by the ORM and language runtime—entity hydration throughput (10k rows), multi-table graph tree materialization (avoiding N+1), dynamic runtime query compilation (10 optional predicates), and connection pool lock contention. This is where 10x–50x performance differences between runtimes manifest.  
+> - **Database-Dominated & Expressiveness Limits (HQ05, HQ06, HQ08, HQ09, HQ12, HQ16)**: Features like recursive CTEs (`WITH RECURSIVE`), statistical window framing (`ROWS BETWEEN`), bulk `ON CONFLICT` upserts, and vector cosine distance (`<=>`). When an ORM's typed DSL cannot express these constructs (e.g. EF Core LINQ falling back to `SqlQueryRaw` / `ExecuteSqlRaw`), PostgreSQL executes the query directly while the ORM acts primarily as a lightweight tuple-to-DTO deserializer. These tests evaluate where the typed abstraction boundary ends.
+
 ---
 
 ## 5. Architectural Deep Dives: What Did We Learn?
